@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Styled CRUD</title>
+    <meta charset="UTF-8">
+    <!-- Font Awesome Icons -->
+    <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.11/purify.js"></script>
+    <script src="./styledmovie.js"></script>
+    <style>
+        /* Grid Layout */
+        #grid-container {
+            display: grid;
+            grid-template-areas:
+                'nav nav nav nav'
+                'main main main main';
+            grid-template-columns: 15% auto auto auto auto;
+            grid-gap: 15px;
+        }
+
+        /* General CSS */
+        body {
+            font-family: sans-serif;
+            background-color: rgba(243, 243, 243, 0.911);
+        }
+
+        nav {
+            background-color: rgba(79, 70, 206, 0.986);
+            font-size: 18px;
+            line-height: 3vh;
+            grid-area: nav;
+            vertical-align: middle;
+            overflow: hidden;
+            color: white;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: row;
+            margin: 0;
+        }
+
+        nav p {
+            margin-right: 15px;
+        }
+
+        nav p a:hover {
+            font-size: 19px;
+        }
+
+        .card {
+            width: 600px;
+            height: 200px;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            margin: 20px;
+            display: flex;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .card-left {
+            width: 60px;
+            background-color: rgba(79, 70, 206, 0.986);
+            box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .card-content {
+            width: 460px;
+            height: 160px;
+            margin: 20px 0px 20px 40px;
+            border: 0px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            /* text-align: center; */
+        }
+
+        .card-control {
+            display: flex;
+            flex-direction: column;
+            width: 100px;
+
+        }
+
+        .card-content-l {
+            font-weight: bold;
+            margin-right: 60px;
+        }
+
+        .card-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 0px;
+            background-color: rgba(79, 70, 206, 0.986);
+            box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.2);
+            color: white;
+            font-size: 13px;
+            margin: 20px 0 15px 0;
+        }
+
+        .card-button:hover {
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .button-top {
+            float: right;
+        }
+
+        #add-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 0px;
+            background-color: rgba(79, 70, 206, 0.986);
+            box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.2);
+            color: white;
+            font-size: 13px;
+            margin: 0 0 30px 0;
+        }
+
+        #add-button:hover {
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        #content {
+            display: flex;
+            flex-direction: column;
+            margin: 50px 100px 50px 100px;
+            height: auto;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a {
+            color: white;
+            text-decoration: none !important;
+        }
+
+
+        dialog {
+            border: 0;
+            background-color: rgba(63, 88, 202, 0.924);
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.383);
+            color: white;
+            line-height: 50px;
+            font-size: 18px;
+        }
+
+        dialog input {
+            font-size: 18px;
+            width: 300px;
+        }
+
+        dialog select {
+            font-size: 18px;
+        }
+
+        dialog button {
+            font-size: 15px;
+            margin-right: 20px;
+            background-color: white;
+            border: 0;
+            font-family: sans-serif;
+            width: 80px;
+            height: 25px;
+            border-radius: 10px;
+            box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        dialog button:hover {
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .dialog-buttons {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        #edit-dialog {
+            top: 30%;
+            padding: 30px;
+            width: 300px;
+            height: 400px;
+        }
+
+        #remove-dialog {
+            top: 35%;
+            text-align: center;
+            width: 300px;
+            height: 150px;
+        }
+
+        #err {
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="notification">
+    <nav>
+        <p>Big List of Movies</p>
+        <p><a href="./index.html">Home |</a></p>
+        <p><a href="./crud.html">Simple CRUD |</a></p>
+        <p><a href="./nativedialogs.html">Simple Dialogs |</a></p>
+        <p><a href="./customdialog.html">Custom Dialogs</a></p>
+    </nav>
+    <div id="content">
+        <div>
+            <div class="button-top">
+                <button id="add-button" class="add-button"><i class="fas fa-plus"></i></button>
+            </div>
+            <div id="list"></div>
+        </div>
+    </div>
+
+    <!-- edit dialog -->
+    <dialog id="edit-dialog">
+        <label for="title">Title:</label><br>
+        <input type="text" name="title" id="title" placeholder="Title"><br>
+        <label for="year">Year of Release:</label><br>
+        <input type="number" name="year" id="year"><br>
+        <label for="rating">Rating:</label><br>
+        <select name="rating" id="rating">
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+            <option value="NR">NR</option>
+        </select><br>
+        <div id="err"></div>
+        <div class="dialog-buttons">
+            <button id="cancel">Cancel</button>
+            <button id="save">Save</button>
+        </div>
+    </dialog>
+    <!-- Delete dialog -->
+    <dialog id="remove-dialog">
+        <p>Delete movie?</p>
+        <div class="dialog-buttons">
+            <button id="cancel-r">Cancel</button>
+            <button id="ok-r">OK</button>
+        </div>
+    </dialog>
+    <!-- Card -->
+    <template id="card-template">
+        <div class="card">
+            <div class="card-left"></div>
+            <div class="card-content">
+                <div class="card-content-l">
+                    <p>Title:</p>
+                    <p>Year Released:</p>
+                    <p>Rating:</p>
+                </div>
+                <div class="card-content-r">
+                    <p id="card-title">The Empire Strikes Back</p>
+                    <p id="card-year">1980</p>
+                    <p id="card-rating">PG</p>
+                </div>
+            </div>
+            <div class="card-control">
+                <button class="card-button button-edit"><i class="fas fa-pencil-alt"></i></button>
+                <button class="card-button button-remove"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        </div>
+    </template>
+</body>
+
+</html>
