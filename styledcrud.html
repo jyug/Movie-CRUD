@@ -50,7 +50,7 @@
 
         .card {
             width: 600px;
-            height: 200px;
+            height: 300px;
             background-color: white;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             margin: 20px;
@@ -69,7 +69,7 @@
 
         .card-content {
             width: 460px;
-            height: 160px;
+            height: 260px;
             margin: 20px 0px 20px 40px;
             border: 0px;
             overflow: hidden;
@@ -146,17 +146,17 @@
             background-color: rgba(63, 88, 202, 0.924);
             box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.383);
             color: white;
-            line-height: 50px;
-            font-size: 18px;
+            line-height: 35px;
+            font-size: 14px;
         }
 
         dialog input {
-            font-size: 18px;
+            font-size: 14px;
             width: 300px;
         }
 
         dialog select {
-            font-size: 18px;
+            font-size: 14px;
         }
 
         dialog button {
@@ -184,7 +184,7 @@
             top: 30%;
             padding: 30px;
             width: 300px;
-            height: 400px;
+            height: 470px;
         }
 
         #remove-dialog {
@@ -200,7 +200,7 @@
     </style>
 </head>
 
-<body class="notification">
+<body>
     <nav>
         <p>Big List of Movies</p>
         <p><a href="./index.html">Home |</a></p>
@@ -231,6 +231,18 @@
             <option value="R">R</option>
             <option value="NR">NR</option>
         </select><br>
+        <label for="genre">Genre:</label><br>
+        <select name="genre" id="genre">
+            <option value="sci-fi">sci-fi</option>
+            <option value="sitcom">sitcom</option>
+            <option value="action">action</option>
+            <option value="anime">anime</option>
+            <option value="criminal">criminal</option>
+        </select><br>
+        <label for="userRating">User Rating:</label><br>
+        <input type="number" name="userRating" id="userRating" style="width: 70px;"><br>
+        <label for="image">Iamge Link:</label><br>
+        <input type="text" name="image" id="image"><br>
         <div id="err"></div>
         <div class="dialog-buttons">
             <button id="cancel">Cancel</button>
@@ -254,11 +266,17 @@
                     <p>Title:</p>
                     <p>Year Released:</p>
                     <p>Rating:</p>
+                    <p>Genre:</p>
+                    <p>User Rating:</p>
+                    <p>Image:</p>
                 </div>
                 <div class="card-content-r">
                     <p id="card-title">The Empire Strikes Back</p>
                     <p id="card-year">1980</p>
                     <p id="card-rating">PG</p>
+                    <p id="card-genre">sci-fi</p>
+                    <p id="card-userRating">4</p>
+                    <p id="card-image"></p>
                 </div>
             </div>
             <div class="card-control">
