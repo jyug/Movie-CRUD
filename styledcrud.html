@@ -184,7 +184,7 @@
             top: 30%;
             padding: 30px;
             width: 300px;
-            height: 470px;
+            min-height: 470px;
         }
 
         #remove-dialog {
@@ -233,15 +233,19 @@
         </select><br>
         <label for="genre">Genre:</label><br>
         <select name="genre" id="genre">
-            <option value="sci-fi">sci-fi</option>
-            <option value="sitcom">sitcom</option>
-            <option value="action">action</option>
-            <option value="anime">anime</option>
-            <option value="criminal">criminal</option>
+            <option value="Action">Action</option>
+            <option value="Anime">Anime</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Crime">Crime</option>
+            <option value="Documentary">Documentary</option>
+            <option value="Drama">Drama</option>
+            <option value="Horror">Horror</option>
+            <option value="Romance">Romance</option>
+            <option value="Sci-fi">Sci-fi</option>
         </select><br>
         <label for="userRating">User Rating:</label><br>
-        <input type="number" name="userRating" id="userRating" style="width: 70px;"><br>
-        <label for="image">Iamge Link:</label><br>
+        <input type="number" name="userRating" id="userRating" style="width: 70px;" min="0" max="5"><br>
+        <label for="image">Image Link:</label><br>
         <input type="text" name="image" id="image"><br>
         <div id="err"></div>
         <div class="dialog-buttons">

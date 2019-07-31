@@ -101,12 +101,17 @@ function setContent(index) {
   let userRating = document.getElementById('userRating').value;
   let image = document.getElementById('image').value;
   // Check for empty input
-  if (title == '' || year == '' || rating == '') {
+  if (title == '' || year == '' || rating == '' || image == '') {
     // Generate error message
     const errText = 'All fields are required.';
     document.getElementById('err').innerHTML = errText;
     return;
   } else {
+    if (userRating < 0 || userRating > 5) {
+      const ratingErr = 'Please choose user rating from 0 to 5.';
+    document.getElementById('err').innerHTML = ratingErr;
+    return;
+    }
     // Sanitize input
     title = DOMPurify.sanitize(title);
     year = DOMPurify.sanitize(year);
@@ -121,7 +126,6 @@ function setContent(index) {
   var node;
   if (listNodeCur != null) {
     let id = movieList[index].id;
-    console.log(id);
     node = {
       "title": title, "year": year, "rating": rating, "genre": genre,
       "userRating": userRating, "image": image, "id": id
