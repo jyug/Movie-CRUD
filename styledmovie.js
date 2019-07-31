@@ -115,17 +115,22 @@ function setContent(index) {
     userRating = DOMPurify.sanitize(userRating);
     image = DOMPurify.sanitize(image);
   }
-  let id = movieList[index].id;
   // Set Content in remote
-  node = {
-    "title": title, "year": year, "rating": rating, "genre": genre,
-    "userRating": userRating, "image": image, "id": id
-  };
   const listNodeCur = document.getElementById(`li-${index}`);
   // Check if the node exists
+  var node;
   if (listNodeCur != null) {
+    let id = movieList[index].id;
+    node = {
+      "title": title, "year": year, "rating": rating, "genre": genre,
+      "userRating": userRating, "image": image, "id": id
+    };
     setContentRemote(node, index, true);
   } else {
+    node = {
+      "title": title, "year": year, "rating": rating, "genre": genre,
+      "userRating": userRating, "image": image
+    };
     setContentRemote(node, index, false);
   }
 }
@@ -207,7 +212,7 @@ function removeContent(index) {
       saveMovieList();
       var node = document.getElementById(`li-${index}`);
       node.parentNode.removeChild(node);
-    }else if(this.status != 200) {
+    } else if (this.status != 200) {
       console.log(`Delete error: ${this.status}`);
     }
     else {
@@ -217,123 +222,123 @@ function removeContent(index) {
   xhr.send();
 }
 
-  /*
-   * add(index)
-   * Preprocess and show the add dialog.
-   * @param - index: the index of the element in the movie array
-   */
-  function add() {
-    // Preprocess the dialog
-    editSaveButton = document.getElementById('save');
-    editSaveButton.setAttribute('onclick', `setContent(${movieList.length})`);
-    // Show the dialog
-    document.getElementById('edit-dialog').show();
+/*
+ * add(index)
+ * Preprocess and show the add dialog.
+ * @param - index: the index of the element in the movie array
+ */
+function add() {
+  // Preprocess the dialog
+  editSaveButton = document.getElementById('save');
+  editSaveButton.setAttribute('onclick', `setContent(${movieList.length})`);
+  // Show the dialog
+  document.getElementById('edit-dialog').show();
+}
+
+/*
+ * loadContent
+ * Update DOM from data in the movie array
+ */
+function loadContent() {
+  clearContent();
+  const list = document.getElementById('list');
+  console.log(movieList);
+  for (let i = 0; i < movieList.length; i++) {
+    appendListNode(movieList[i], list, i);
   }
+}
 
-  /*
-   * loadContent
-   * Update DOM from data in the movie array
-   */
-  function loadContent() {
-    clearContent();
-    const list = document.getElementById('list');
-    console.log(movieList);
-    for (let i = 0; i < movieList.length; i++) {
-      appendListNode(movieList[i], list, i);
-    }
+/*
+ * clearContent
+ * Clear the DOM list
+ */
+function clearContent() {
+  const list = document.getElementById('list');
+  let first = list.firstElementChild;
+  while (first) {
+    first.remove();
+    first = list.firstElementChild;
   }
+}
 
-  /*
-   * clearContent
-   * Clear the DOM list
-   */
-  function clearContent() {
-    const list = document.getElementById('list');
-    let first = list.firstElementChild;
-    while (first) {
-      first.remove();
-      first = list.firstElementChild;
-    }
-  }
+/*
+ * saveMovieList
+ * Save the movie array to browser internal storage
+ * Called whtn the data structre is updated
+ */
+function saveMovieList() {
+  listStr = JSON.stringify(movieList);
+  localStorage.setItem('movieList-s', listStr);
+}
 
-  /*
-   * saveMovieList
-   * Save the movie array to browser internal storage
-   * Called whtn the data structre is updated
-   */
-  function saveMovieList() {
-    listStr = JSON.stringify(movieList);
-    localStorage.setItem('movieList-s', listStr);
-  }
-
-  /*
-   * loadMovieList
-   * Populate the movie array data structre from the api endpoints.
-   * Called when page loads
-   */
-  function loadMovieList(callback) {
-    var listStr;
-    let xhr = new XMLHttpRequest();
-    const endpoint = `http://introweb.tech/api/movies/movieList?access_token=${atoken}`;
-    xhr.open("GET", endpoint);
-    //xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    xhr.send();
-    xhr.onreadystatechange = function () {
-      //console.log(this.readyState);
-      //console.log(this.status);
-      if (this.readyState == 4 && this.status == 200) {
-        listStr = xhr.responseText;
-        if (listStr == null) {
-          return;
-        } else {
-          movieList = JSON.parse(listStr);
-        }
-      } else {
-        if (this.status != 200) {
-          console.log("Error: could not access movie list!");
-        } else {
-          console.log("Request in progress!");
-        }
-      }
-
-      // listStr = localStorage.getItem('movieList-s');
-
+/*
+ * loadMovieList
+ * Populate the movie array data structre from the api endpoints.
+ * Called when page loads
+ */
+function loadMovieList(callback) {
+  var listStr;
+  let xhr = new XMLHttpRequest();
+  const endpoint = `http://introweb.tech/api/movies/movieList?access_token=${atoken}`;
+  xhr.open("GET", endpoint);
+  //xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+  xhr.send();
+  xhr.onreadystatechange = function () {
+    //console.log(this.readyState);
+    //console.log(this.status);
+    if (this.readyState == 4 && this.status == 200) {
+      listStr = xhr.responseText;
       if (listStr == null) {
         return;
       } else {
         movieList = JSON.parse(listStr);
-        movieList = movieList.movies;
-        console.log(movieList);
-        callback();
+      }
+    } else {
+      if (this.status != 200) {
+        console.log("Error: could not access movie list!");
+      } else {
+        console.log("Request in progress!");
       }
     }
+
+    // listStr = localStorage.getItem('movieList-s');
+
+    if (listStr == null) {
+      return;
+    } else {
+      movieList = JSON.parse(listStr);
+      movieList = movieList.movies;
+      console.log(movieList);
+      callback();
+    }
   }
+}
 
-  /*
-   * clearDialog
-   * Clear the dialog files
-   */
-  function clearDialog() {
-    document.getElementById('title').value = '';
-    document.getElementById('year').value = '';
-    document.getElementById('rating').value = '';
-    document.getElementById('err').innerHTML = '';
-  }
+/*
+ * clearDialog
+ * Clear the dialog files
+ */
+function clearDialog() {
+  document.getElementById('title').value = '';
+  document.getElementById('year').value = '';
+  document.getElementById('rating').value = '';
+  document.getElementById('err').innerHTML = '';
+}
 
-  // Executed on page load
-  window.onload = function () {
-    // Callback on loadMovieList
-    loadMovieList(loadContent);
-    document.getElementById('add-button').addEventListener('click', function () {
-      add();
-    });
+// Executed on page load
+window.onload = function () {
+  // Callback on loadMovieList
+  loadMovieList(loadContent);
+  document.getElementById('add-button').addEventListener('click', function () {
+    add();
+  });
 
-    document.getElementById('cancel-r').addEventListener('click', function () {
-      document.getElementById('remove-dialog').close();
-    });
+  document.getElementById('cancel-r').addEventListener('click', function () {
+    document.getElementById('remove-dialog').close();
+  });
 
-    document.getElementById('cancel').addEventListener('click', function () {
-      document.getElementById('edit-dialog').close();
-      clearDialog();
-    });
-  }
+  document.getElementById('cancel').addEventListener('click', function () {
+    document.getElementById('edit-dialog').close();
+    clearDialog();
+  });
+}
