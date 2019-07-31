@@ -210,10 +210,9 @@ function removeContent(index) {
       movieList.splice(index, 1);
       // Close dialog
       document.getElementById('remove-dialog').close();
-      // Update content
+      // Reload content
       saveMovieList();
-      var node = document.getElementById(`li-${index}`);
-      node.parentNode.removeChild(node);
+      loadMovieList(loadContent);
     } else if (this.status != 200) {
       console.log(`Delete error: ${this.status}`);
     }
