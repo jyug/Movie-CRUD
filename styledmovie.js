@@ -5,6 +5,8 @@ movieList.push(['Star Wars', '1977', 'PG']);
 movieList.push(['The Empire Strikes Back', '1980', 'PG']);
 movieList.push(['The Revenge of the Jedi', '1983', 'PG']);
 
+//added temp access token
+const atoken = "ufVj4Aymv4wyCjwEyp7pKsSkrQiLwLh4QTEv5XEGk1KMaASKMTJxD5zvgqrRemde";
 
 // Library functions
 
@@ -199,11 +201,30 @@ function saveMovieList() {
  * Called when page loads
  */
 function loadMovieList() {
-  listStr = localStorage.getItem('movieList-s');
-  if (listStr == null) {
-    return;
-  } else {
-    movieList = JSON.parse(listStr);
+  var listStr;
+  let xhr = new XMLHttpRequest();
+  const endpoint = `http://introweb.tech/api/movies/movieList?access_token=${atoken}`;
+  xhr.open("GET", endpoint);
+  //xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+  xhr.send();
+  xhr.onreadystatechange = function() {
+    //console.log(this.readyState);
+    //console.log(this.status);
+    if(this.readyState == 4 && this.status == 200) {
+      listStr = xhr.responseText;
+      if (listStr == null) {
+        return;
+      } else {
+        movieList = JSON.parse(listStr);
+      }
+    } else {
+      if (this.status != 200) {
+        console.log("Error: could not access movie list!");
+      } else {
+        console.log("Request in progress!");
+      }
+    }
+    console.log(movieList);
   }
 }
 
