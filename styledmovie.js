@@ -121,6 +121,7 @@ function setContent(index) {
   var node;
   if (listNodeCur != null) {
     let id = movieList[index].id;
+    console.log(id);
     node = {
       "title": title, "year": year, "rating": rating, "genre": genre,
       "userRating": userRating, "image": image, "id": id
@@ -157,7 +158,8 @@ function setContentRemote(node, index, editing) {
       // Update the DOM differently when editing
       if (!editing) {
         // Update data structure
-        movieList[index] = node;
+        movieList[index] = JSON.parse(this.responseText);
+        console.log(movieList[index]);
         const list = document.getElementById('list');
         appendListNode(movieList[index], list, index);
       } else {
@@ -291,6 +293,7 @@ function loadMovieList(callback) {
       if (listStr == null) {
         return;
       } else {
+        console.log(listStr);
         movieList = JSON.parse(listStr);
       }
     } else {
