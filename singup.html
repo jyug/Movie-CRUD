@@ -1,14 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>signup</title>
-    </head>
-    <body>
-        <form action="http://introweb.tech/api/Users" method="POST">
-            Username: <input type="text" name="username"><br/>
-            Email:    <input  type="email" name="email"> <br/>
-            password:  <input type="password" name="password"> <br/>
-            <button type="submit" value="submit">Sign Up</button>
+
+<head>
+    <title>signup</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.11/purify.js"></script>
+    <script src="./sign.js"></script>
+    <style>
+        /* General CSS */
+        body {
+            font-family: sans-serif;
+            background-color: rgba(243, 243, 243, 0.911);
+        }
+
+        nav {
+            background-color: rgba(79, 70, 206, 0.986);
+            font-size: 18px;
+            line-height: 3vh;
+            grid-area: nav;
+            vertical-align: middle;
+            overflow: hidden;
+            color: white;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: row;
+            margin: 0;
+        }
+
+        nav p {
+            margin-right: 15px;
+        }
+
+        nav p a:hover {
+            font-size: 19px;
+        }
+
+        a {
+            color: white;
+            text-decoration: none !important;
+        }
+
+        .formBox {
+            position: fixed;
+            left: 30%;
+            top: 30%;
+            border: 0;
+            background-color: rgba(63, 88, 202, 0.924);
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.383);
+            color: white;
+            line-height: 35px;
+            font-size: 14px;
+            padding: 5vw;
+            width: 30vw;
+            min-height: 15vw;
+        }
+
+        .formBox button {
+            margin-top: 4vw;
+        }
+
+        .formBox button:hover {
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.404);
+        }
+
+        .formBox input {
+            font-size: 14px;
+            width: 30vw;
+        }
+
+        #signup {
+            visibility: hidden;
+        }
+
+        .link {
+            text-decoration: underline;
+            color: rgb(177, 167, 233);
+        }
+
+        .link:hover {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <p><a href="./index.html">Home |</a></p>
+        <p><a href="./crud.html">Simple CRUD |</a></p>
+        <p><a href="./nativedialogs.html">Simple Dialogs |</a></p>
+        <p><a href="./customdialog.html">Custom Dialogs</a></p>
+    </nav>
+    <div id="signup" class="formBox">
+        <form id="signupForm">
+            Username: <input type="text" name="username" required><br />
+            Email: <input type="email" name="email" required> <br />
+            Password: <input type="password" name="password" required> <br />
+            <div id="reqSignUpErr"></div>
+            <p>Already have an account? <span id="signinLink" class="link"> Sign-in</span></p>
+            <button type="button" id="signupSubmit" onclick="formRequest(true)">Sign Up</button>
         </form>
-    </body>
+    </div>
+    <div id="signin" class="formBox">
+        <form id="signinForm">
+            Username: <input type="text" name="username" required><br />
+            password: <input type="password" name="password" required> <br />
+            <div id="reqSignInErr"></div>
+            <p>Do not have an account? <span id="signupLink" class="link"> Sign-up</span></p>
+            <button type="button" id="signinSubmit" onclick="formRequest(false)">Sign In</button>
+        </form>
+    </div>
+    <div id="errSignUpDialog" class="formBox" style="visibility: hidden;">
+        <p style="text-align:center;">The account info provided already exist. <span id="signupAgain" class="link"> Try Again!</span> </p>
+    </div>
+    <div id="errSignInDialog" class="formBox" style="visibility: hidden;">
+        <p style="text-align:center;">Incorrect username or password. <span id="signinAgain" class="link"> Try Again!</span> </p>
+    </div>
+    <script>
+        document.getElementById("signupSubmit").addEventListener("click", function () { formRequest(true);});
+        document.getElementById("signinSubmit").addEventListener("click", function () { formRequest(false);});
+        document.getElementById("signupLink").addEventListener("click", function () { switchWindow("signup", "signin"); });
+        document.getElementById("signinLink").addEventListener("click", function () { switchWindow("signin", "signup"); });
+        document.getElementById("signupAgain").addEventListener("click", function () { switchWindow("signup", "errSignUpDialog");});
+        document.getElementById("signinAgain").addEventListener("click", function () { switchWindow("signin", "errSignInDialog");});
+    </script>
+    <noscript>
+        <b style="text-align: center;">Please enable JavaScript!</b>
+    </noscript>
+</body>
+
 </html>

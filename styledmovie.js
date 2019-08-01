@@ -3,7 +3,10 @@
 var movieList = [];
 
 //added temp access token
-const atoken = "ufVj4Aymv4wyCjwEyp7pKsSkrQiLwLh4QTEv5XEGk1KMaASKMTJxD5zvgqrRemde";
+//const atoken = "ufVj4Aymv4wyCjwEyp7pKsSkrQiLwLh4QTEv5XEGk1KMaASKMTJxD5zvgqrRemde";
+var userLoginInfoStr = localStorage.getItem("userLoginInfo");
+var userLoginInfo = JSON.parse(userLoginInfoStr);
+const atoken = userLoginInfo.id;
 
 // Library functions
 
