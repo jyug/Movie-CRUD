@@ -26,6 +26,7 @@ function formRequest(signup) {
         formData = new FormData(document.querySelector('#signupForm'));
         payloadParam = new URLSearchParams(formData);
         payloadParam.forEach(function (value, key) {
+            value = DOMPurify.sanitize(value);
             if (value == "" || value == null) {
                 reqErr = true;
             }
@@ -50,6 +51,7 @@ function formRequest(signup) {
         formData = new FormData(document.querySelector('#signinForm'));
         payloadParam = new URLSearchParams(formData);
         payloadParam.forEach(function (value, key) {
+            value = DOMPurify.sanitize(value);
             if (value == "" || value == null) {
                 reqErr = true;
             }
