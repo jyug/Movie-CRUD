@@ -42,7 +42,8 @@ function appendListNode(node, list, index) {
   const userRating = listNode.querySelector('#card-userRating');
   userRating.innerHTML = node.userRating;
   const image = listNode.querySelector('#card-image');
-  image.innerHTML = node.image;
+  image.setAttribute("src", node.image);
+  //image.innerHTML = node.image;
   // Finish the list node
   initializeListNodeButtons(index, listNode);
   listNode.querySelector('.card').setAttribute('id', `li-${index}`);
