@@ -322,6 +322,18 @@ function loadMovieList(callback) {
     }
   }
 }
+/*
+ * logout 
+ */
+function logout() {
+  let endpoint = `http://introweb.tech/api/Users/logout?access_token=${atoken}`;
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', endpoint, true);
+  xhr.onload = function () {
+  window.location = "./signout.html";
+  }
+  xhr.send();
+}
 
 /*
  * clearDialog
@@ -340,6 +352,10 @@ window.onload = function () {
   loadMovieList(loadContent);
   document.getElementById('add-button').addEventListener('click', function () {
     add();
+  });
+  
+  document.getElementById('signoutBtn').addEventListener('click', function () {
+    logout();
   });
 
   document.getElementById('cancel-r').addEventListener('click', function () {

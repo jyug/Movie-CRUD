@@ -2,7 +2,10 @@
 <html lang="en">
 
 <head>
-    <title>signup</title>
+    <title>sign in and sign up</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.11/purify.js"></script>
     <script src="./sign.js"></script>
     <style>
@@ -109,10 +112,10 @@
         </form>
     </div>
     <div id="errSignUpDialog" class="formBox" style="visibility: hidden;">
-        <p style="text-align:center;">The account info provided already exist. <span id="signupAgain" class="link"> Try Again!</span> </p>
+        <p style="text-align:center;">There is an account associated with this username or email. Please <span id="signupAgain" class="link"> Try Again!</span> </p>
     </div>
     <div id="errSignInDialog" class="formBox" style="visibility: hidden;">
-        <p style="text-align:center;">Incorrect username or password. <span id="signinAgain" class="link"> Try Again!</span> </p>
+        <p style="text-align:center;">Invalid input. Account doesn't exist or incorrect username or password was used. Please <span id="signinAgain" class="link"> Try Again!</span> </p>
     </div>
     <script>
         document.getElementById("signupSubmit").addEventListener("click", function () { formRequest(true);});

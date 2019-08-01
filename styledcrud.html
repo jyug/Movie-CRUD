@@ -110,7 +110,7 @@
             float: right;
         }
 
-        #add-button {
+        .add-button {
             width: 60px;
             height: 60px;
             border-radius: 50%;
@@ -119,10 +119,17 @@
             box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.2);
             color: white;
             font-size: 13px;
-            margin: 0 0 30px 0;
+            margin: 0 0 40% 0;
+        }
+        
+        .signoutBtn {
+            float: left;
+            position: absolute;
+            top: 15%;
+            right: 90%;
         }
 
-        #add-button:hover {
+        .add-button:hover {
             box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
         }
 
@@ -204,6 +211,7 @@
     <nav>
         <p>Big List of Movies</p>
         <p><a href="./index.html">Home |</a></p>
+        <p><a href="./signup.html"> Login |</a></p>
         <p><a href="./crud.html">Simple CRUD |</a></p>
         <p><a href="./nativedialogs.html">Simple Dialogs |</a></p>
         <p><a href="./customdialog.html">Custom Dialogs</a></p>
@@ -211,7 +219,8 @@
     <div id="content">
         <div>
             <div class="button-top">
-                <button id="add-button" class="add-button"><i class="fas fa-plus"></i></button>
+                <button id="add-button" class="add-button"><i class="fas fa-plus" title="add movie"></i></button>
+                <button id="signoutBtn" class="signoutBtn add-button"><i class="fas fa-sign-out-alt" title="log out"></i></button>
             </div>
             <div id="list"></div>
         </div>
