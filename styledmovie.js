@@ -11,7 +11,7 @@ if (userLoginInfo == null){
   redirectUnauthorizedUser();
 }
 const atoken = userLoginInfo.id;
-const username = userLoginInfo.userId;
+const username = localStorage.getItem("userName");
 
 // Library functions
 
@@ -368,7 +368,7 @@ function clearDialog() {
 // Executed on page load
 window.onload = function () {
   // Callback on loadMovieList
-  document.getElementById("nav-username").innerHTML = username;
+  document.getElementById("nav-username").innerHTML = `${username} `;
   loadMovieList(loadContent);
   document.getElementById('add-button').addEventListener('click', function () {
     add();

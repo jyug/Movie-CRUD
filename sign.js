@@ -19,6 +19,7 @@ function formRequest(signup) {
     const errText = "All fields are required.";
     let reqErr = false;
     let xhr = new XMLHttpRequest();
+    let userName;
 
     if (signup == true) {
         endpoint = `${apiURL}/Users`;
@@ -54,6 +55,10 @@ function formRequest(signup) {
             value = DOMPurify.sanitize(value);
             if (value == "" || value == null) {
                 reqErr = true;
+            }
+            if (key == "username") {
+                userName = value;
+                localStorage.setItem("userName", userName);
             }
         });
         if (reqErr) {
