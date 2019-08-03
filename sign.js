@@ -9,7 +9,6 @@ export function switchWindow(vis, hid) {
 const apiURL = "http://introweb.tech/api";
 const moviePage = "./styledcrud.html";
 
-
 //window.addEventListener("onload", function () {signupAjax();});
 export function formRequest(signup) {
     let endpoint;

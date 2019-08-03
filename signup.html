@@ -66,6 +66,7 @@
         }
 
         .formBox {
+            visibility: hidden;
             position: fixed;
             left: 35%;
             top: 30%;
@@ -119,6 +120,15 @@
             width: 300px;
             word-wrap: break-word;
         }
+        
+        .noJs {
+            text-align: center; 
+            color: rgba(63, 88, 202, 0.924);
+            padding-top: 20%;
+            font-size: 22px;
+            margin-left: 19%;
+            position: absolute;
+        }
     </style>
 </head>
 
@@ -154,6 +164,7 @@
     </div>
     <script type="module">
         import {formRequest, switchWindow} from "./sign.js";
+        document.getElementById("signin").style.visibility = 'visible';
         window.formRequest = formRequest;
         document.getElementById("signupSubmit").addEventListener("click", function () { formRequest(true); });
         document.getElementById("signinSubmit").addEventListener("click", function () { formRequest(false); });
@@ -161,7 +172,7 @@
         document.getElementById("signinLink").addEventListener("click", function () { switchWindow("signin", "signup"); });
     </script>
     <noscript>
-        <b style="text-align: center;">Please enable JavaScript!</b>
+        <b class="noJs"> Please enable javascript and reload the page for full functionality of the website.</b>
     </noscript>
 </body>
 

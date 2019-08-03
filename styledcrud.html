@@ -249,6 +249,21 @@
         span.checked::before {
             color: rgba(79, 70, 206, 0.986);
         }
+
+        .noJs {
+            text-align: center; 
+            color: rgba(63, 88, 202, 0.924);
+            padding: 20%;
+            font-size: 22px;
+        }
+
+        #add-button {
+            visibility: hidden;
+        }
+        .arrow {
+            visibility: hidden;
+        }
+
     </style>
 </head>
 
@@ -353,7 +368,9 @@
     <!-- Script -->
     <script type="module">
         import { loadContent, add, logout, clearDialog, username, loadMovieList, edit, initializeListNodeButtons, remove, removeContent, saveMovieList, setContent, setContentRemote, curLoad, movieList } from "./styledmovie.js";
-
+        
+        document.getElementById("add-button").style.visibility = 'visible';
+        document.querySelector('.arrow').style.visibility = 'visible';
         window.edit = edit;
         window.remove = remove;
         window.removeContent = removeContent;
@@ -397,6 +414,9 @@
 
         // });
     </script>
+    <noscript>
+        <b class="noJs"> Please enable javascript and reload the page for full functionality of the website.</b>
+    </noscript>
 </body>
 
 </html>
