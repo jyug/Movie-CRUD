@@ -35,7 +35,15 @@ export function formRequest(signup) {
         });
         if (reqErr) {
             document.getElementById('reqSignUpErr').innerHTML = errText;
-            //document.getElementsByClassName('input').style.borderColor = "red";
+            var i;
+            for (i = 1; i<4; i++) {
+                let x = `input${i}`;
+                let field = document.getElementById(x);
+                if (field.value == "") {
+                    field.style.borderColor = 'rgba(242, 88, 124, 0.60)';
+                    field.style.borderWidth = '3px';
+                }
+            }
             return;
         }
         payload = payloadParam.toString();
@@ -64,6 +72,15 @@ export function formRequest(signup) {
         });
         if (reqErr) {
             document.getElementById('reqSignInErr').innerHTML = errText;
+            var i;
+            for (i = 4; i<6; i++) {
+                let x = `input${i}`;
+                let field = document.getElementById(x);
+                if (field.value == "") {
+                    field.style.borderColor = 'rgba(242, 88, 124, 0.60)';
+                    field.style.borderWidth = '3px';
+                }
+            }
             return;
         }
         payload = payloadParam.toString();

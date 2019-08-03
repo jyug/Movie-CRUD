@@ -132,9 +132,9 @@
         <div id="main">
             <div id="signup" class="formBox">
                 <form id="signupForm">
-                    Username: <input type="text" name="username" placeholder="username" class="input" required autofocus><br />
-                    Email: <input type="email" name="email" placeholder="email@example.com" class="input" required> <br />
-                    Password: <input type="password" name="password" placeholder="password" class="input" required> <br />
+                    Username: <input type="text" name="username" placeholder="username" id="input1" required autofocus><br />
+                    Email: <input type="email" name="email" placeholder="email@example.com" id="input2" required> <br />
+                    Password: <input type="password" name="password" placeholder="password" id="input3" required> <br />
                     <div id="reqSignUpErr" class="reqErr"></div>
                     <p>Already have an account? <span id="signinLink" class="link"> Sign-in</span></p>
                     <button type="button" id="signupSubmit" onclick="formRequest(true)">Sign Up</button>
@@ -142,8 +142,8 @@
             </div>
             <div id="signin" class="formBox">
                 <form id="signinForm">
-                    Username: <input type="text" name="username" placeholder="username" required autofocus><br />
-                    password: <input type="password" name="password" placeholder="password" required> <br />
+                    Username: <input type="text" name="username" placeholder="username" id="input4" required autofocus><br />
+                    password: <input type="password" name="password" placeholder="password" id="input5" required> <br />
                     <div id="reqSignInErr" class="reqErr"></div>
                     <p>Do not have an account? <span id="signupLink" class="link"> Sign-up</span></p>
                     <button type="button" id="signinSubmit" onclick="formRequest(false)">Sign In</button>
