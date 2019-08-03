@@ -1,0 +1,240 @@
+/* Grid Layout */
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'nav nav nav nav'
+        'main main main main';
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 15px;
+}
+
+/* General CSS */
+body {
+    font-family: sans-serif;
+    background-color: rgba(243, 243, 243, 0.911);
+}
+
+nav {
+    background-color: rgba(79, 70, 206, 0.986);
+    font-size: 18px;
+    height: 7vh;
+    line-height: 3vh;
+    grid-area: nav;
+    vertical-align: middle;
+    overflow: hidden;
+    color: white;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+
+nav p {
+    margin-right: 15px;
+}
+
+nav p#nav-login-control:hover {
+    font-size: 19px;
+}
+
+.card {
+    width: 700px;
+    height: 300px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    display: flex;
+    border-radius: 10px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-left {
+    width: 60px;
+    background-color: rgba(79, 70, 206, 0.986);
+    box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.2);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.card-content {
+    width: 560px;
+    height: 260px;
+    margin: 20px 0px 20px 20px;
+    border: 0px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    /* text-align: center; */
+}
+
+.card-control {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+
+}
+
+/* .card-content-l {
+    font-weight: bold;
+    margin-right: 5%;
+    margin-top: 5%;
+    margin-left: 5%;
+    line-height: 150%;
+} */
+
+.card-content-r {
+    line-height: 150%;
+    margin-right: 5%;
+    margin-top: 5%;
+    margin-left: 10%;
+    /* text-align: center; */
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.image-col {
+    float: left;
+    /* margin-right: 5%; */
+    left: 0%;
+    padding: 10px;
+}
+
+.image-col img {
+    width: 200px;
+    height: 240px;
+}
+
+.card-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 0px;
+    background-color: rgba(79, 70, 206, 0.986);
+    box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 13px;
+    margin: 50% 0 10% 0;
+}
+
+.card-button:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.button-top {
+    float: right;
+}
+
+.add-button {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 0px;
+    background-color: rgba(79, 70, 206, 0.986);
+    box-shadow: 2px 0 8px 0 rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 13px;
+    margin: 0 0 40% 0;
+}
+
+.signoutBtn {
+    float: left;
+    position: absolute;
+    top: 15%;
+    right: 90%;
+}
+
+.add-button:hover {
+    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.3);
+}
+
+#content {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    margin: 50px 100px 50px 100px;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    color: white;
+    text-decoration: none !important;
+}
+
+
+dialog {
+    border: 0;
+    background-color: rgba(63, 88, 202, 0.924);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.383);
+    color: white;
+    line-height: 35px;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+dialog input {
+    font-size: 14px;
+    width: 300px;
+    border-radius: 5px;
+}
+
+dialog select {
+    font-size: 14px;
+}
+
+dialog button {
+    font-size: 15px;
+    margin-right: 20px;
+    background-color: white;
+    border: 0;
+    font-family: sans-serif;
+    width: 80px;
+    height: 25px;
+    border-radius: 10px;
+    box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+dialog button:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.dialog-buttons {
+    margin-top: 25px;
+    text-align: center;
+}
+
+#edit-dialog {
+    position: fixed;
+    top: 30%;
+    padding: 30px;
+    width: 300px;
+    min-height: 470px;
+}
+
+#remove-dialog {
+    position: fixed;
+    top: 35%;
+    text-align: center;
+    width: 300px;
+    height: 150px;
+}
+
+#err {
+    color: white;
+}
+
+/* Star Rating */
+span.fa-star::before {
+    color: rgba(0, 0, 0, 0.2);
+}
+
+span.checked::before {
+    color: rgba(79, 70, 206, 0.986);
+}
