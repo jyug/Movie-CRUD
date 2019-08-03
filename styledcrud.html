@@ -8,7 +8,7 @@
     <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.11/purify.js"></script>
-    <script src="./styledmovie.js"></script>
+    <script nomodule src="./styledmovie.js"></script>
     <style>
         /* Grid Layout */
         .grid-container {
@@ -350,7 +350,7 @@
 
     <!-- Script -->
     <script type="module">
-        import {loadContent, add, logout, clearDialog} from "./styledmovie.js";
+        import {loadContent, add, logout, clearDialog, username, loadMovieList} from "./styledmovie.js";
         document.getElementById("nav-username").innerHTML = `${username} `;
         loadMovieList(loadContent);
         document.getElementById('add-button').addEventListener('click', function () {
