@@ -6,6 +6,10 @@ var movieList = [];
 //const atoken = "ufVj4Aymv4wyCjwEyp7pKsSkrQiLwLh4QTEv5XEGk1KMaASKMTJxD5zvgqrRemde";
 var userLoginInfoStr = localStorage.getItem("userLoginInfo");
 var userLoginInfo = JSON.parse(userLoginInfoStr);
+if (userLoginInfo == null){
+  userLoginInfo = {id: "unauthorized"};
+  redirectUnauthorizedUser();
+}
 const atoken = userLoginInfo.id;
 
 // Library functions
@@ -336,6 +340,15 @@ function logout() {
 }
 
 /*
+ * redirectUnauthorizedUser
+ * Hide the content and shows a notification of redirection instead
+ * Redirect to login page 
+ */
+function redirectUnauthorizedUser() {
+  window.location.replace("./signup.html");
+}
+
+/*
  * clearDialog
  * Clear the dialog files
  */
@@ -343,6 +356,9 @@ function clearDialog() {
   document.getElementById('title').value = '';
   document.getElementById('year').value = '';
   document.getElementById('rating').value = '';
+  document.getElementById('genre').value = '';
+  document.getElementById('userRating').value = '';
+  document.getElementById('image').value = '';
   document.getElementById('err').innerHTML = '';
 }
 
