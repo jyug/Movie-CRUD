@@ -89,17 +89,17 @@
 
         }
 
-        .card-content-l {
+        /* .card-content-l {
             font-weight: bold;
             margin-right: 5%;
             margin-top: 5%;
             margin-left: 5%;
             line-height: 150%;
-        }
+        } */
 
         .card-content-r {
             line-height: 150%;
-            margin-right: 10%;
+            margin-right: 5%;
             margin-top: 5%;
             margin-left: 10%;
             /* text-align: center; */
@@ -350,7 +350,12 @@
 
     <!-- Script -->
     <script type="module">
-        import {loadContent, add, logout, clearDialog, username, loadMovieList} from "./styledmovie.js";
+        import {loadContent, add, logout, clearDialog, username, loadMovieList, edit, initializeListNodeButtons, remove, removeContent, saveMovieList, setContent, setContentRemote} from "./styledmovie.js";
+        
+        window.edit = edit;
+        window.remove = remove;
+        window.removeContent = removeContent;
+        window.setContent = setContent;
         document.getElementById("nav-username").innerHTML = `${username} `;
         loadMovieList(loadContent);
         document.getElementById('add-button').addEventListener('click', function () {

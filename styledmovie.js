@@ -22,7 +22,7 @@ export const username = localStorage.getItem("userName");
  * @param - list: the document list
  * @param - index: the index of the element in the movie array
  */
-function appendListNode(node, list, index) {
+export function appendListNode(node, list, index) {
   // Check for impossible coner case(bugs) and log
   if (node == null) {
     console.log('null element detected!');
@@ -64,7 +64,7 @@ function appendListNode(node, list, index) {
  * @param - node: an element in the movie array
  * @param - index: the index of the element in the movie array
  */
-function initializeListNodeButtons(index, node) {
+export function initializeListNodeButtons(index, node) {
   // Initialize the Edit Button
   const editButton = node.querySelector('.button-edit');
   editButton.setAttribute('onclick', `edit(${index})`);
@@ -78,9 +78,9 @@ function initializeListNodeButtons(index, node) {
  * Preprocess and show the edit dialog.
  * @param - index: the index of the element in the movie array
  */
-function edit(index) {
+export function edit(index) {
   // Preprocess the dialog
-  editSaveButton = document.getElementById('save');
+  var editSaveButton = document.getElementById('save');
   editSaveButton.setAttribute('onclick', `setContent(${index})`);
   // Get the current values
   const curTitle = movieList[index].title;
@@ -104,7 +104,7 @@ function edit(index) {
  * Save the content values of a list node given user inputs
  * @param - index: the index of the element in the movie array
  */
-function setContent(index) {
+export function setContent(index) {
   // Get user input
   let title = document.getElementById('title').value;
   let year = document.getElementById('year').value;
@@ -155,7 +155,7 @@ function setContent(index) {
 /*
  * setContentRemote(node)
  */
-function setContentRemote(node, index, editing) {
+export function setContentRemote(node, index, editing) {
   let xhr = new XMLHttpRequest();
   var endpoint
   console.log(editing);
@@ -204,7 +204,7 @@ function setContentRemote(node, index, editing) {
  * Preprocess and show the remove dialog
  * @param - index: the index of the element in the movie array
  */
-function remove(index) {
+export function remove(index) {
   // Preprocess dialog
   document.getElementById('ok-r').setAttribute('onclick', `removeContent(${index})`);
   // Show dialog
@@ -216,7 +216,7 @@ function remove(index) {
  * Remove the element of given index from the movie array
  * @param - index: the index of the element in the movie array
  */
-function removeContent(index) {
+export function removeContent(index) {
   // Remove content on remote
   let xhr = new XMLHttpRequest();
   const endpoint = `http://introweb.tech/api/movies/${movieList[index].id}?access_token=${atoken}`;
@@ -246,7 +246,7 @@ function removeContent(index) {
  */
 export function add() {
   // Preprocess the dialog
-  editSaveButton = document.getElementById('save');
+  var editSaveButton = document.getElementById('save');
   editSaveButton.setAttribute('onclick', `setContent(${movieList.length})`);
   // Show the dialog
   document.getElementById('edit-dialog').show();
@@ -269,7 +269,7 @@ export function loadContent() {
  * clearContent
  * Clear the DOM list
  */
-function clearContent() {
+export function clearContent() {
   const list = document.getElementById('list');
   let first = list.firstElementChild;
   while (first) {
@@ -283,8 +283,8 @@ function clearContent() {
  * Save the movie array to browser internal storage
  * Called whtn the data structre is updated
  */
-function saveMovieList() {
-  listStr = JSON.stringify(movieList);
+export function saveMovieList() {
+  var listStr = JSON.stringify(movieList);
   localStorage.setItem('movieList-s', listStr);
 }
 
@@ -348,7 +348,7 @@ export function logout() {
  * Hide the content and shows a notification of redirection instead
  * Redirect to login page 
  */
-function redirectUnauthorizedUser() {
+export function redirectUnauthorizedUser() {
   window.location.replace("./signup.html");
 }
 
