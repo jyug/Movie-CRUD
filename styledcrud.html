@@ -50,7 +50,7 @@
         }
 
         .card {
-            width: 600px;
+            width: 700px;
             height: 300px;
             background-color: white;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -72,7 +72,7 @@
         }
 
         .card-content {
-            width: 460px;
+            width: 560px;
             height: 260px;
             margin: 20px 0px 20px 20px;
             border: 0px;
@@ -94,18 +94,32 @@
             margin-right: 5%;
             margin-top: 5%;
             margin-left: 5%;
+            line-height: 150%;
         }
 
         .card-content-r {
             line-height: 150%;
             margin-right: 10%;
             margin-top: 5%;
+            margin-left: 10%;
+            /* text-align: center; */
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 18px;
         }
 
         .image-col {
             float: left;
-            margin-right: 10%;
+            /* margin-right: 5%; */
             left: 0%;
+            padding: 10px;
+        }
+
+        .image-col img {
+            width: 200px;
+            height: 240px;
         }
 
         .card-button {
@@ -225,6 +239,15 @@
         #err {
             color: white;
         }
+
+        /* Star Rating */
+        span.fa-star::before {
+            color:rgba(0, 0, 0, 0.2);
+        }
+
+        span.checked::before {
+            color:rgba(79, 70, 206, 0.986);
+        }
     </style>
 </head>
 
@@ -295,21 +318,27 @@
             <div class="card-left"></div>
             <div class="card-content">
                 <div class="image-col">
-                    <img id="card-image" width="120%" height="100%" alt="movie image">
+                    <img class="card-image" width="120%" height="100%" alt="movie image">
                 </div>
-                <div class="card-content-l">
+                <!-- <div class="card-content-l">
                     <p>Title:</p>
                     <p>Year Released:</p>
                     <p>Rating:</p>
                     <p>Genre:</p>
                     <p>User Rating:</p>
-                </div>
+                </div> -->
                 <div class="card-content-r">
-                    <p id="card-title">The Empire Strikes Back</p>
-                    <p id="card-year">1980</p>
-                    <p id="card-rating">PG</p>
-                    <p id="card-genre">sci-fi</p>
-                    <p id="card-userRating">4</p>
+                    <p class="card-title">The Empire Strikes Back</p>
+                    <p class="card-year">1980</p>
+                    <p class="card-genre">sci-fi</p>
+                    <p class="card-rating">PG</p>
+                    <p class="card-userRating">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </p>
                 </div>
             </div>
             <div class="card-control">

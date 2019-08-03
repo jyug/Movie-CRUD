@@ -36,17 +36,21 @@ function appendListNode(node, list, index) {
   // Initalize the list node
   const template = document.getElementById('card-template');
   const listNode = template.content.cloneNode(true);
-  const title = listNode.querySelector('#card-title');
+  const title = listNode.querySelector('.card-title');
   title.innerHTML = node.title;
-  const year = listNode.querySelector('#card-year');
-  year.innerHTML = node.year;
-  const rating = listNode.querySelector('#card-rating');
-  rating.innerHTML = node.rating;
-  const genre = listNode.querySelector('#card-genre');
+  const year = listNode.querySelector('.card-year');
+  year.innerHTML = `Released in ${node.year}`;
+  const rating = listNode.querySelector('.card-rating');
+  rating.innerHTML = `Rated ${node.rating}`;
+  const genre = listNode.querySelector('.card-genre');
   genre.innerHTML = node.genre;
-  const userRating = listNode.querySelector('#card-userRating');
-  userRating.innerHTML = node.userRating;
-  const image = listNode.querySelector('#card-image');
+  const userRating = listNode.querySelector('.card-userRating');
+  // userRating.innerHTML = `User Rating: ${node.userRating}`;
+  for (var i = 0; i<node.userRating; i++){
+    console.log(userRating.children[i])
+    userRating.children[i].setAttribute("class", "fa fa-star checked");
+  }
+  const image = listNode.querySelector('.card-image');
   image.setAttribute("src", node.image);
   //image.innerHTML = node.image;
   // Finish the list node
