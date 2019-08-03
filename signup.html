@@ -67,7 +67,7 @@
 
         .formBox {
             position: fixed;
-            left: 38%;
+            left: 35%;
             top: 30%;
             border: 0;
             background-color: rgba(63, 88, 202, 0.924);
@@ -80,21 +80,6 @@
             min-height: 10vw;
             border-radius: 5%;
             text-align: center;
-        }
-
-        .formBox-err {
-            position: fixed;
-            left: 30%;
-            top: 30%;
-            border: 0;
-            background-color: rgba(63, 88, 202, 0.924);
-            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.383);
-            color: white;
-            line-height: 50px;
-            font-size: 16px;
-            padding: 5vw;
-            min-width: 8vw;
-            min-height: 10vw;
         }
 
         .formBox button {
@@ -129,6 +114,11 @@
         .link:hover {
             font-size: 16px;
         }
+
+        .reqErr {
+            width: 300px;
+            word-wrap: break-word;
+        }
     </style>
 </head>
 
@@ -145,7 +135,7 @@
                     Username: <input type="text" name="username" required><br />
                     Email: <input type="email" name="email" required> <br />
                     Password: <input type="password" name="password" required> <br />
-                    <div id="reqSignUpErr"></div>
+                    <div id="reqSignUpErr" class="reqErr"></div>
                     <p>Already have an account? <span id="signinLink" class="link"> Sign-in</span></p>
                     <button type="button" id="signupSubmit" onclick="formRequest(true)">Sign Up</button>
                 </form>
@@ -154,18 +144,10 @@
                 <form id="signinForm">
                     Username: <input type="text" name="username" required><br />
                     password: <input type="password" name="password" required> <br />
-                    <div id="reqSignInErr"></div>
+                    <div id="reqSignInErr" class="reqErr"></div>
                     <p>Do not have an account? <span id="signupLink" class="link"> Sign-up</span></p>
                     <button type="button" id="signinSubmit" onclick="formRequest(false)">Sign In</button>
                 </form>
-            </div>
-            <div id="errSignUpDialog" class="formBox-err" style="visibility: hidden;">
-                <p style="text-align:center;">There is an account associated with this username or email. Please <span
-                        id="signupAgain" class="link"> Try Again!</span> </p>
-            </div>
-            <div id="errSignInDialog" class="formBox-err" style="visibility: hidden;">
-                <p style="text-align:center;">Invalid input. Account doesn't exist or incorrect username or password was
-                    used. Please <span id="signinAgain" class="link"> Try Again!</span> </p>
             </div>
         </div>
         <div id="col-right"></div>

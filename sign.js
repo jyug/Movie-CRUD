@@ -41,9 +41,8 @@ function formRequest(signup) {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 resultStr = xhr.responseText;
                 switchWindow("signin","signup");
-                //userInfo = JSON.parse(resultStr);
             } else {
-                switchWindow("errSignUpDialog", "signup");
+               document.getElementById('reqSignUpErr').innerHTML = "Account with username already exist.";
             }
         }
     } else {
@@ -72,7 +71,7 @@ function formRequest(signup) {
                 localStorage.setItem("userLoginInfo", resultStr);
                 window.location = moviePage;
             } else {
-                switchWindow("errSignInDialog", "signin");
+                document.getElementById('reqSignInErr').innerHTML = "Incorrect username or password.";
             }
         }
     }
