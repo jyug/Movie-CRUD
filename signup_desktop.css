@@ -55,6 +55,7 @@ a {
 }
 
 .formBox {
+    visibility: hidden;
     position: fixed;
     left: 35%;
     top: 30%;
@@ -107,4 +108,13 @@ a {
 .reqErr {
     width: 300px;
     word-wrap: break-word;
+}
+
+.noJs {
+    text-align: center; 
+    color: rgba(63, 88, 202, 0.924);
+    padding-top: 20%;
+    font-size: 22px;
+    margin-left: 19%;
+    position: absolute;
 }

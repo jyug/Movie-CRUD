@@ -238,3 +238,16 @@ span.fa-star::before {
 span.checked::before {
     color: rgba(79, 70, 206, 0.986);
 }
+.noJs {
+    text-align: center; 
+    color: rgba(63, 88, 202, 0.924);
+    padding: 20%;
+    font-size: 22px;
+}
+
+#add-button {
+    visibility: hidden;
+}
+.arrow {
+    visibility: hidden;
+}
