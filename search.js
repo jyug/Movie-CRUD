@@ -415,10 +415,9 @@ export function clearDialog() {
   document.getElementById('err').innerHTML = '';
 }
 
-//Added for search
 export function search(item) {
   localStorage.setItem("searchItem",item);
-  document.location = './search.html';
+  document.location.replace('./search.html');
 }
 
 // // Executed on page load

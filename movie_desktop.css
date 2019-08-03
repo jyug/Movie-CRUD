@@ -37,6 +37,17 @@ nav p#nav-login-control:hover {
     font-size: 19px;
 }
 
+#searchBar {
+    height: 3vh;
+    margin-top: 12px; 
+    border-radius: 5px;
+    margin-left: 55%;
+    margin-right: 1%;
+}
+#searchBtn{
+    float: right;
+    right: 0%;
+}
 .card {
     width: 700px;
     height: 300px;
