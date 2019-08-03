@@ -7,10 +7,11 @@ var movieList = [];
 var userLoginInfoStr = localStorage.getItem("userLoginInfo");
 var userLoginInfo = JSON.parse(userLoginInfoStr);
 if (userLoginInfo == null){
-  userLoginInfo = {id: "unauthorized"};
+  userLoginInfo = {id: "unauthorized", username: "Unauthorized User"};
   redirectUnauthorizedUser();
 }
 const atoken = userLoginInfo.id;
+const username = userLoginInfo.userId;
 
 // Library functions
 
@@ -334,8 +335,9 @@ function logout() {
   let endpoint = `http://introweb.tech/api/Users/logout?access_token=${atoken}`;
   let xhr = new XMLHttpRequest();
   xhr.open('POST', endpoint, true);
-  xhr.onload = function () {
-  window.location = "./signout.html";
+  xhr.onreadystatechange = function () {
+    localStorage.removeItem("userLoginInfo");
+    window.location = "./signout.html";
   }
   xhr.send();
 }
@@ -366,12 +368,13 @@ function clearDialog() {
 // Executed on page load
 window.onload = function () {
   // Callback on loadMovieList
+  document.getElementById("nav-username").innerHTML = username;
   loadMovieList(loadContent);
   document.getElementById('add-button').addEventListener('click', function () {
     add();
   });
   
-  document.getElementById('signoutBtn').addEventListener('click', function () {
+  document.getElementById('nav-login-control').addEventListener('click', function () {
     logout();
   });
 

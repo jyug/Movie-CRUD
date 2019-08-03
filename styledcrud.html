@@ -11,12 +11,12 @@
     <script src="./styledmovie.js"></script>
     <style>
         /* Grid Layout */
-        #grid-container {
+        .grid-container {
             display: grid;
             grid-template-areas:
                 'nav nav nav nav'
                 'main main main main';
-            grid-template-columns: 15% auto auto auto auto;
+            grid-template-columns: auto auto auto auto;
             grid-gap: 15px;
         }
 
@@ -29,6 +29,7 @@
         nav {
             background-color: rgba(79, 70, 206, 0.986);
             font-size: 18px;
+            height: 7vh;
             line-height: 3vh;
             grid-area: nav;
             vertical-align: middle;
@@ -44,7 +45,7 @@
             margin-right: 15px;
         }
 
-        nav p a:hover {
+        nav p#nav-login-control:hover {
             font-size: 19px;
         }
 
@@ -121,7 +122,7 @@
             font-size: 13px;
             margin: 0 0 40% 0;
         }
-        
+
         .signoutBtn {
             float: left;
             position: absolute;
@@ -134,6 +135,7 @@
         }
 
         #content {
+            grid-area: main;
             display: flex;
             flex-direction: column;
             margin: 50px 100px 50px 100px;
@@ -210,19 +212,17 @@
 <body>
     <nav>
         <p>Big List of Movies</p>
-        <p><a href="./index.html">Home |</a></p>
-        <p><a href="./signup.html"> Login |</a></p>
-        <p><a href="./crud.html">Simple CRUD |</a></p>
-        <p><a href="./nativedialogs.html">Simple Dialogs |</a></p>
-        <p><a href="./customdialog.html">Custom Dialogs</a></p>
+        <p>Hello, <span id="nav-username"></span>|</p>
+        <p id="nav-login-control"><i class="fas fa-sign-out-alt" title="log out"></i> Logout</p>
     </nav>
-    <div id="content">
-        <div>
-            <div class="button-top">
-                <button id="add-button" class="add-button"><i class="fas fa-plus" title="add movie"></i></button>
-                <button id="signoutBtn" class="signoutBtn add-button"><i class="fas fa-sign-out-alt" title="log out"></i></button>
+    <div class="grid-container">
+        <div id="content">
+            <div>
+                <div class="button-top">
+                    <button id="add-button" class="add-button"><i class="fas fa-plus" title="add movie"></i></button>
+                </div>
+                <div id="list"></div>
             </div>
-            <div id="list"></div>
         </div>
     </div>
 
