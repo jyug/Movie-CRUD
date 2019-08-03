@@ -4,11 +4,11 @@ export var movieList = [];
 export var curLoad = 0;
 
 // added temp access token
-// const atoken = "ufVj4Aymv4wyCjwEyp7pKsSkrQiLwLh4QTEv5XEGk1KMaASKMTJxD5zvgqrRemde";
+// const atoken = "ufVj4Aymv4wyCjimportantwEyp7pKsSkrQiLwLh4QTEv5XEGk1KMaASKMTJxD5zvgqrRemde";
 const userLoginInfoStr = localStorage.getItem('userLoginInfo');
 let userLoginInfo = JSON.parse(userLoginInfoStr);
 if (userLoginInfo == null) {
-  userLoginInfo = {id: 'unauthorized', username: 'Unauthorized User'};
+  userLoginInfo = { id: 'unauthorized', username: 'Unauthorized User' };
   redirectUnauthorizedUser();
 }
 const atoken = userLoginInfo.id;
@@ -47,7 +47,8 @@ export function appendListNode(node, list, index) {
   genre.innerHTML = node.genre;
   const userRating = listNode.querySelector('.card-userRating');
   // userRating.innerHTML = `User Rating: ${node.userRating}`;
-  for (let i = 0; i<node.userRating; i++) {
+  node.userRating = Math.min(node.userRating,5)
+  for (let i = 0; i < node.userRating; i++) {
     userRating.children[i].setAttribute('class', 'fa fa-star checked');
   }
   const image = listNode.querySelector('.card-image');
@@ -132,36 +133,40 @@ export function setContent(index) {
     const errText = 'All fields are required.';
     document.getElementById('err').innerHTML = errText;
     if (title.value == '') {
-      title.style.borderColor = 'rgba(242, 88, 124, 0.60)';
+      title.style.borderColor = 'rgb(242, 88, 124)';
       title.style.borderWidth = '3px';
     }
     if (year.value == '') {
-      year.style.borderColor = 'rgba(242, 88, 124, 0.60)';
+      year.style.borderColor = 'rgb(242, 88, 124)';
       year.style.borderWidth = '3px';
     }
     if (rating.value == '') {
-      rating.style.borderColor = 'rgba(242, 88, 124, 0.60)';
+      rating.style.borderColor = 'rgb(242, 88, 124)';
       rating.style.borderWidth = '3px';
     }
     if (image.value == '') {
-      image.style.borderColor = 'rgba(242, 88, 124, 0.60)';
+      image.style.borderColor = 'rgb(242, 88, 124)';
       image.style.borderWidth = '3px';
     }
     return;
-  } else {
-    if (userRating < 0 || userRating > 5) {
+  } else if (userRating.value < 0 || userRating.value > 5) {
+      console.log("ratingerr");
       const ratingErr = 'Please choose user rating from 0 to 5.';
       document.getElementById('err').innerHTML = ratingErr;
       return;
+    }else if(year.value >2020 || year.value <1800) {
+      const yearErr = 'Please choose yearfrom 1800 to 2020.';
+      document.getElementById('err').innerHTML = yearErr;
+      return;
     }
     // Sanitize input
-    title.value = DOMPurify.sanitize(title.value );
-    year.value = DOMPurify.sanitize(year.value );
-    rating.value = DOMPurify.sanitize(rating.value );
-    genre.value = DOMPurify.sanitize(genre.value );
-    userRating.value = DOMPurify.sanitize(userRating.value );
-    image.value = DOMPurify.sanitize(image.value );
-  }
+    title.value = DOMPurify.sanitize(title.value);
+    year.value = DOMPurify.sanitize(year.value);
+    rating.value = DOMPurify.sanitize(rating.value);
+    genre.value = DOMPurify.sanitize(genre.value);
+    userRating.value = DOMPurify.sanitize(userRating.value);
+    image.value = DOMPurify.sanitize(image.value);
+  
   // Set Content in remote
   const listNodeCur = document.getElementById(`li-${index}`);
   // Check if the node exists
@@ -202,20 +207,20 @@ export function setContentRemote(node, index, editing) {
     endpoint = `http://introweb.tech/api/movies?access_token=${atoken}`;
   }
   const params = typeof node == 'string' ? data : Object.keys(node).map(
-      function(k) {
-        return encodeURIComponent(k) + '=' + encodeURIComponent(node[k]);
-      }
+    function (k) {
+      return encodeURIComponent(k) + '=' + encodeURIComponent(node[k]);
+    }
   ).join('&');
   xhr.open('POST', endpoint);
-  xhr.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
       // Update the DOM differently when editing
       if (!editing) {
         // Update data structure
         movieList[index] = JSON.parse(this.responseText);
-        loadMovieList(loadContent, Math.max(3, index+1));
+        loadMovieList(loadContent, Math.max(3, index + 1));
       } else {
-        loadMovieList(loadContent, Math.max(3, index+1));
+        loadMovieList(loadContent, Math.max(3, index + 1));
       }
       // Colse and clear dialog
       document.getElementById('edit-dialog').close();
@@ -255,14 +260,14 @@ export function removeContent(index) {
   const xhr = new XMLHttpRequest();
   const endpoint = `http://introweb.tech/api/movies/${movieList[index].id}?access_token=${atoken}`;
   xhr.open('DELETE', endpoint);
-  xhr.onreadystatechange = function() {
+  xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       movieList.splice(index, 1);
       // Close dialog
       document.getElementById('remove-dialog').close();
       // Reload content
       saveMovieList();
-      loadMovieList(loadContent, Math.max(3, index+1));
+      loadMovieList(loadContent, Math.max(3, index + 1));
     } else if (this.status != 200) {
       console.log(`Delete error: ${this.status}`);
     } else {
@@ -304,6 +309,21 @@ export function add() {
  */
 export function loadContent(num) {
   clearContent();
+  if(movieList.length == 0){
+    const list = document.getElementById('list');
+    var h2Tag = document.createElement("h2");
+    var textNode = document.createTextNode("Looks like you don't have any movie, try adding some.");
+    h2Tag.appendChild(textNode);
+    h2Tag.setAttribute("id", "no-movie-prompt");
+    list.appendChild(h2Tag);
+  }
+  document.getElementById("add-button").hidden = false;
+  console.log(curLoad);
+  if(curLoad >= movieList.length || movieList.length < 4){
+    document.getElementsByClassName("arrow")[0].hidden = true
+  }else {
+    document.getElementsByClassName("arrow")[0].hidden = false;
+  }
   const list = document.getElementById('list');
   num = Math.min(num, movieList.length);
   for (let i = 0; i < num; i++) {
@@ -349,7 +369,7 @@ export function loadMovieList(callback, num) {
   xhr.open('GET', endpoint);
   // xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
   xhr.send();
-  xhr.onreadystatechange = function() {
+  xhr.onreadystatechange = function () {
     // console.log(this.readyState);
     // console.log(this.status);
     if (this.readyState == 4 && this.status == 200) {
@@ -385,7 +405,7 @@ export function logout() {
   const endpoint = `http://introweb.tech/api/Users/logout?access_token=${atoken}`;
   const xhr = new XMLHttpRequest();
   xhr.open('POST', endpoint, true);
-  xhr.onreadystatechange = function() {
+  xhr.onreadystatechange = function () {
     localStorage.removeItem('userLoginInfo');
     window.location = './signout.html';
   };
@@ -415,31 +435,67 @@ export function clearDialog() {
   document.getElementById('err').innerHTML = '';
 }
 
-//Added for search
-export function search(item) {
-  localStorage.setItem("searchItem",item);
-  document.location = './search.html';
+
+/*
+ * search
+ * Search a movie by title
+ */
+export function search() {
+  console.log("called");
+  var item = document.getElementById("searchBar").value;
+  // Check for empty input
+  if (item == null || item == '') {
+    console.log(item);
+    return;
+  }
+  // sanitize input
+  item = DOMPurify.sanitize(item)
+  // Iterate through the movie list to find corresponding movie
+  for (var movie of movieList) {
+    if (movie.title.toLowerCase().replace(/ /g, '') == item.toLowerCase().replace(/ /g, '')) {
+      var id = movie.id;
+      var index = movieList.indexOf(movie);
+      break;
+    }
+  }
+  if (index == null) {
+    loadSearchResult(item, null, -1);
+    return;
+  }
+  // Perform AJAX request
+  var xhr = new XMLHttpRequest();
+  const endpoint = `http://introweb.tech/api/movies/${id}?access_token=${atoken}`;
+  xhr.open('GET', endpoint);
+  xhr.send();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      var responseData = JSON.parse(xhr.responseText);
+      loadSearchResult(item, responseData, index);
+    } else if (xhr.status != 200) {
+      console.log("Error processing search request.");
+    } else {
+      console.log("Processing search request.");
+    }
+  }
 }
 
-// // Executed on page load
-// window.onload = function () {
-//   // Callback on loadMovieList
-//   document.getElementById("nav-username").innerHTML = `${username} `;
-//   loadMovieList(loadContent);
-//   document.getElementById('add-button').addEventListener('click', function () {
-//     add();
-//   });
-
-//   document.getElementById('nav-login-control').addEventListener('click', function () {
-//     logout();
-//   });
-
-//   document.getElementById('cancel-r').addEventListener('click', function () {
-//     document.getElementById('remove-dialog').close();
-//   });
-
-//   document.getElementById('cancel').addEventListener('click', function () {
-//     document.getElementById('edit-dialog').close();
-//     clearDialog();
-//   });
-// }
+/*
+ * loadSearchResult
+ * Used only for search
+ */
+function loadSearchResult(item, data, index) {
+  clearContent();
+  document.getElementById("add-button").hidden = true;
+  document.getElementsByClassName("arrow")[0].hidden = true;
+  const list = document.getElementById('list');
+  // Check for empty result
+  if (item == null || index == -1 || data == null) {
+    var h2Tag = document.createElement("h2");
+    var textNode = document.createTextNode(`No search result for "${item}"`);
+    h2Tag.appendChild(textNode);
+    h2Tag.setAttribute("id", "search-prompt");
+    list.appendChild(h2Tag);
+    return;
+  }
+  appendListNode(data, list, index);
+}

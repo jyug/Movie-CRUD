@@ -111,10 +111,9 @@ a {
 }
 
 .noJs {
-    text-align: center; 
+    position: fixed;
+    top: 35%;
+    left: 25%; 
     color: rgba(63, 88, 202, 0.924);
-    padding-top: 20%;
     font-size: 22px;
-    margin-left: 19%;
-    position: absolute;
 }

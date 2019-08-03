@@ -17,12 +17,13 @@
         <p>Big List of Movies</p>
         <p>Hello, <span id="nav-username"></span>|</p>
         <p id="nav-login-control"><i class="fas fa-sign-out-alt" title="log out"></i> Logout</p>
-        <input type="text" id="searchBar" placeholder="search" name="search">
-        <p id="searchBtn"><i class="fas fa-search" title="search bar"></i></p>
+        <input type="text" id="searchBar" placeholder="search case insensitive" name="search">
+        <p id="searchBtn" class="nav-button"><i class="fas fa-search" title="search bar"></i></p>
+        <p id="refreshBtn" class="nav-button"><i class="fas fa-redo-alt" title="refresh button"></i></p>
     </nav>
     <div class="grid-container">
         <div id="content">
-            <div>
+            <div id="flex-box">
                 <div class="button-top">
                     <button id="add-button" class="add-button"><i class="fas fa-plus" title="add movie"></i></button>
                 </div>
@@ -115,10 +116,9 @@
     <!-- Script -->
     <script type="module">
         import { loadContent, add, logout, clearDialog, username, loadMovieList, edit, initializeListNodeButtons, remove, removeContent, saveMovieList, setContent, setContentRemote, curLoad, movieList, search } from "./styledmovie.js";
-       
+
         let searching = document.getElementById("searchBtn");
-        let searchItem = searching.value;
-        searching.addEventListener("click", function () {search(searchItem);});
+        searching.addEventListener("click", function () { search(); });
         document.getElementById("add-button").style.visibility = 'visible';
         document.querySelector('.arrow').style.visibility = 'visible';
         window.edit = edit;
@@ -145,7 +145,11 @@
         });
 
         document.getElementsByClassName('arrow')[0].addEventListener('click', function () {
-            loadContent(curLoad+3);
+            loadContent(curLoad + 3);
+        });
+
+        document.getElementById('refreshBtn').addEventListener('click', function () {
+            loadContent(3);
         });
 
         // window.addEventListener('scroll', function (event) {
@@ -155,14 +159,14 @@
         //         scrollPosition = window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop || 0);
         //     if (pageHeight <= windowHeight + scrollPosition) {
         //         if (curLoad < movieList.length) {
-        //             document.getElementsByClassName("arrow")[0].hidden=false;
+        //             document.getElementsByClassName("arrow")[0].hidden = false;
         //             loadContent(curLoad + 1);
         //         } else {
         //             // document.getElementsByClassName("arrow")[0].hidden=true;
         //         }
         //     }
-
         // });
+    
     </script>
     <noscript>
         <b class="noJs"> Please enable javascript and reload the page for full functionality of the website.</b>

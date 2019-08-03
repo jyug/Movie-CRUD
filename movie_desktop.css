@@ -41,8 +41,10 @@ nav p#nav-login-control:hover {
     height: 3vh;
     margin-top: 12px; 
     border-radius: 5px;
-    margin-left: 55%;
+    min-width: 25vw;
+    font-size: 16px;
     margin-right: 1%;
+    float: right;
 }
 #searchBtn{
     float: right;
@@ -250,9 +252,10 @@ span.checked::before {
     color: rgba(79, 70, 206, 0.986);
 }
 .noJs {
-    text-align: center; 
+    position: fixed;
+    top: 35%;
+    left: 25%; 
     color: rgba(63, 88, 202, 0.924);
-    padding: 20%;
     font-size: 22px;
 }
 
@@ -261,4 +264,24 @@ span.checked::before {
 }
 .arrow {
     visibility: hidden;
+}
+
+#nav-login-control {
+    margin-right: 30%;
+}
+
+.nav-button {
+    margin: auto 35px auto 0;
+}
+
+#search-prompt {
+    position: fixed;
+    top: 35%;
+    left: 40%;
+}
+
+#no-movie-prompt {
+    position: fixed;
+    top: 35%;
+    left: 33%;
 }

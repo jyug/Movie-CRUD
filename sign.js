@@ -6,7 +6,7 @@ export function switchWindow(vis, hid) {
   document.getElementById(hid).style.visibility = 'hidden';
 }
 
-const apiURL = 'http://introweb.tech/api';
+const apiURL = 'https://introweb.tech/api';
 const moviePage = './styledcrud.html';
 
 //window.addEventListener("onload", function () {signupAjax();});
@@ -27,6 +27,7 @@ export function formRequest(signup) {
     formData = new FormData(document.querySelector('#signupForm'));
     payloadParam = new URLSearchParams(formData);
     payloadParam.forEach(function(value, key) {
+        console.log(payloadParam);
       value = DOMPurify.sanitize(value);
       if (value == '' || value == null) {
         reqErr = true;
@@ -39,7 +40,7 @@ export function formRequest(signup) {
         const x = `input${i}`;
         const field = document.getElementById(x);
         if (field.value == '') {
-          field.style.borderColor = 'rgba(242, 88, 124, 0.60)';
+          field.style.borderColor = 'rgb(242, 88, 124)';
           field.style.borderWidth = '3px';
         }
       }
@@ -50,7 +51,7 @@ export function formRequest(signup) {
       if (xhr.readyState == 4 && xhr.status == 200) {
         resultStr = xhr.responseText;
         switchWindow('signin', 'signup');
-      } else {
+      }else {
         document.getElementById('reqSignUpErr').innerHTML = 'Account with username already exist.';
       }
     };
@@ -76,7 +77,7 @@ export function formRequest(signup) {
         const x = `input${i}`;
         const field = document.getElementById(x);
         if (field.value == '') {
-          field.style.borderColor = 'rgba(242, 88, 124, 0.60)';
+          field.style.borderColor = 'rgb(242, 88, 124)';
           field.style.borderWidth = '3px';
         }
       }
