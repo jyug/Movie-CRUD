@@ -1,6 +1,6 @@
 // Global variables and initializations
 
-var movieList = [];
+export var movieList = [];
 export var curLoad = 0;
 
 //added temp access token
@@ -367,6 +367,7 @@ export function clearDialog() {
   document.getElementById('image').value = '';
   document.getElementById('err').innerHTML = '';
 }
+
 
 // // Executed on page load
 // window.onload = function () {

@@ -352,7 +352,7 @@
 
     <!-- Script -->
     <script type="module">
-        import { loadContent, add, logout, clearDialog, username, loadMovieList, edit, initializeListNodeButtons, remove, removeContent, saveMovieList, setContent, setContentRemote, curLoad } from "./styledmovie.js";
+        import { loadContent, add, logout, clearDialog, username, loadMovieList, edit, initializeListNodeButtons, remove, removeContent, saveMovieList, setContent, setContentRemote, curLoad, movieList } from "./styledmovie.js";
 
         window.edit = edit;
         window.remove = remove;
@@ -381,15 +381,21 @@
             loadContent(curLoad+3);
         });
 
-        window.addEventListener('scroll', function (event) {
-            var pageHeight = document.documentElement.offsetHeight,
-                windowHeight = window.innerHeight,
-                scrollPosition = window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop || 0);
-            if (pageHeight <= windowHeight + scrollPosition) {
-                loadContent(curLoad+1);
-            }
-        }
-        );
+        // window.addEventListener('scroll', function (event) {
+
+        //     var pageHeight = document.documentElement.offsetHeight,
+        //         windowHeight = window.innerHeight,
+        //         scrollPosition = window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop || 0);
+        //     if (pageHeight <= windowHeight + scrollPosition) {
+        //         if (curLoad < movieList.length) {
+        //             document.getElementsByClassName("arrow")[0].hidden=false;
+        //             loadContent(curLoad + 1);
+        //         } else {
+        //             // document.getElementsByClassName("arrow")[0].hidden=true;
+        //         }
+        //     }
+
+        // });
     </script>
 </body>
 
