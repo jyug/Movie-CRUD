@@ -7,6 +7,7 @@
     <!-- Font Awesome Icons -->
     <link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="./arrow.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.11/purify.js"></script>
     <script nomodule src="./styledmovie.js"></script>
     <style>
@@ -143,12 +144,12 @@
         }
 
         .add-button {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             border: 0px;
             background-color: rgba(79, 70, 206, 0.986);
-            box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 2px 0 8px 0 rgba(0, 0, 0, 0.2);
             color: white;
             font-size: 13px;
             margin: 0 0 40% 0;
@@ -162,7 +163,7 @@
         }
 
         .add-button:hover {
-            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+            box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.3);
         }
 
         #content {
@@ -264,6 +265,7 @@
                     <button id="add-button" class="add-button"><i class="fas fa-plus" title="add movie"></i></button>
                 </div>
                 <div id="list"></div>
+                <div class="arrow"></div>
             </div>
         </div>
     </div>
@@ -350,14 +352,14 @@
 
     <!-- Script -->
     <script type="module">
-        import {loadContent, add, logout, clearDialog, username, loadMovieList, edit, initializeListNodeButtons, remove, removeContent, saveMovieList, setContent, setContentRemote} from "./styledmovie.js";
-        
+        import { loadContent, add, logout, clearDialog, username, loadMovieList, edit, initializeListNodeButtons, remove, removeContent, saveMovieList, setContent, setContentRemote, curLoad } from "./styledmovie.js";
+
         window.edit = edit;
         window.remove = remove;
         window.removeContent = removeContent;
         window.setContent = setContent;
         document.getElementById("nav-username").innerHTML = `${username} `;
-        loadMovieList(loadContent);
+        loadMovieList(loadContent, 3);
         document.getElementById('add-button').addEventListener('click', function () {
             add();
         });
@@ -374,6 +376,20 @@
             document.getElementById('edit-dialog').close();
             clearDialog();
         });
+
+        document.getElementsByClassName('arrow')[0].addEventListener('click', function () {
+            loadContent(curLoad+3);
+        });
+
+        window.addEventListener('scroll', function (event) {
+            var pageHeight = document.documentElement.offsetHeight,
+                windowHeight = window.innerHeight,
+                scrollPosition = window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop || 0);
+            if (pageHeight <= windowHeight + scrollPosition) {
+                loadContent(curLoad+1);
+            }
+        }
+        );
     </script>
 </body>
 

@@ -1,6 +1,7 @@
 // Global variables and initializations
 
 var movieList = [];
+export var curLoad = 0;
 
 //added temp access token
 //const atoken = "ufVj4Aymv4wyCjwEyp7pKsSkrQiLwLh4QTEv5XEGk1KMaASKMTJxD5zvgqrRemde";
@@ -179,7 +180,7 @@ export function setContentRemote(node, index, editing) {
         const list = document.getElementById('list');
         appendListNode(movieList[index], list, index);
       } else {
-        loadMovieList(loadContent);
+        loadMovieList(loadContent, Math.max(3,index+1));
       }
       // Colse and clear dialog
       document.getElementById('edit-dialog').close();
@@ -228,7 +229,7 @@ export function removeContent(index) {
       document.getElementById('remove-dialog').close();
       // Reload content
       saveMovieList();
-      loadMovieList(loadContent);
+      loadMovieList(loadContent, Math.max(3,index+1));
     } else if (this.status != 200) {
       console.log(`Delete error: ${this.status}`);
     }
@@ -256,13 +257,14 @@ export function add() {
  * loadContent
  * Update DOM from data in the movie array
  */
-export function loadContent() {
+export function loadContent(num) {
   clearContent();
   const list = document.getElementById('list');
-  console.log(movieList);
-  for (let i = 0; i < movieList.length; i++) {
+  num = Math.min(num, movieList.length);
+  for (let i = 0; i < num; i++) {
     appendListNode(movieList[i], list, i);
   }
+  curLoad = num;
 }
 
 /*
@@ -293,7 +295,7 @@ export function saveMovieList() {
  * Populate the movie array data structre from the api endpoints.
  * Called when page loads
  */
-export function loadMovieList(callback) {
+export function loadMovieList(callback, num) {
   var listStr;
   let xhr = new XMLHttpRequest();
   const endpoint = `http://introweb.tech/api/movies/movieList?access_token=${atoken}`;
@@ -325,7 +327,7 @@ export function loadMovieList(callback) {
     } else {
       movieList = JSON.parse(listStr);
       movieList = movieList.movies;
-      callback();
+      callback(num);
     }
   }
 }

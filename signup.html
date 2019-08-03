@@ -154,6 +154,7 @@
     </div>
     <script type="module">
         import {formRequest, switchWindow} from "./sign.js";
+        window.formRequest = formRequest;
         document.getElementById("signupSubmit").addEventListener("click", function () { formRequest(true); });
         document.getElementById("signinSubmit").addEventListener("click", function () { formRequest(false); });
         document.getElementById("signupLink").addEventListener("click", function () { switchWindow("signup", "signin"); });
