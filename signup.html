@@ -6,120 +6,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="./signup_desktop.css" media="screen and (min-width: 800px)">
+    <link rel="stylesheet" type="text/css" href="./signup_mobile.css" media="screen and (max-width: 800px)">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.11/purify.js"></script>
     <script nomodule src="./sign.js"></script>
-    <style>
-        /* Grid Layout */
-        .grid-container {
-            display: grid;
-            grid-template-areas:
-                'nav nav nav nav'
-                'col-l main main col-r';
-            grid-template-columns: 30% auto auto 30%;
-            grid-gap: 15px;
-        }
-
-        /* General CSS */
-        body {
-            font-family: sans-serif;
-            background-color: rgba(243, 243, 243, 0.911);
-        }
-
-        #main {
-            grid-area: main;
-            align-items: center;
-        }
-
-        #col-left {
-            grid-area: col-l;
-        }
-
-        #col-right {
-            grid-area: col-r;
-        }
-
-        nav {
-            background-color: rgba(79, 70, 206, 0.986);
-            font-size: 18px;
-            line-height: 3vh;
-            grid-area: nav;
-            vertical-align: middle;
-            overflow: hidden;
-            color: white;
-            padding-left: 20px;
-            display: flex;
-            flex-direction: row;
-            margin: 0;
-        }
-
-        nav p {
-            margin-right: 15px;
-        }
-
-        nav p a:hover {
-            font-size: 19px;
-        }
-
-        a {
-            color: white;
-            text-decoration: none !important;
-        }
-
-        .formBox {
-            position: fixed;
-            left: 35%;
-            top: 30%;
-            border: 0;
-            background-color: rgba(63, 88, 202, 0.924);
-            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.383);
-            color: white;
-            line-height: 50px;
-            font-size: 16px;
-            padding: 4.5vw 3.5vw;
-            min-width: 8vw;
-            min-height: 10vw;
-            border-radius: 5%;
-            text-align: center;
-        }
-
-        .formBox button {
-            width: 100px;
-            height: 30px;
-            margin-top: 2vw;
-            border-radius: 15px;
-            font-size: 14px;
-        }
-
-        .formBox button:hover {
-            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.404);
-        }
-
-        .formBox input {
-            font-size: 16px;
-            min-width: 8vw;
-            border-radius: 5px;
-            float: right;
-            margin-top: 6%;
-        }
-
-        #signup {
-            visibility: hidden;
-        }
-
-        .link {
-            text-decoration: underline;
-            color: rgb(177, 167, 233);
-        }
-
-        .link:hover {
-            font-size: 16px;
-        }
-
-        .reqErr {
-            width: 300px;
-            word-wrap: break-word;
-        }
-    </style>
 </head>
 
 <body>
@@ -142,7 +32,7 @@
             </div>
             <div id="signin" class="formBox">
                 <form id="signinForm">
-                    Username: <input type="text" name="username" placeholder="username" id="input4" required autofocus><br />
+                    Username: <input type="text" name="username" placeholder="username" id="input4" required><br />
                     password: <input type="password" name="password" placeholder="password" id="input5" required> <br />
                     <div id="reqSignInErr" class="reqErr"></div>
                     <p>Do not have an account? <span id="signupLink" class="link"> Sign-up</span></p>

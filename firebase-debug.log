@@ -1,25 +1,25 @@
-[debug] [2019-08-03T08:00:59.028Z] ----------------------------------------------------------------------
-[debug] [2019-08-03T08:00:59.030Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
-[debug] [2019-08-03T08:00:59.030Z] CLI Version:   6.3.0
-[debug] [2019-08-03T08:00:59.030Z] Platform:      darwin
-[debug] [2019-08-03T08:00:59.030Z] Node Version:  v11.3.0
-[debug] [2019-08-03T08:00:59.031Z] Time:          Sat Aug 03 2019 01:00:59 GMT-0700 (Pacific Daylight Time)
-[debug] [2019-08-03T08:00:59.031Z] ----------------------------------------------------------------------
+[debug] [2019-08-03T12:10:03.618Z] ----------------------------------------------------------------------
+[debug] [2019-08-03T12:10:03.621Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2019-08-03T12:10:03.622Z] CLI Version:   6.3.0
+[debug] [2019-08-03T12:10:03.622Z] Platform:      darwin
+[debug] [2019-08-03T12:10:03.622Z] Node Version:  v11.3.0
+[debug] [2019-08-03T12:10:03.623Z] Time:          Sat Aug 03 2019 05:10:03 GMT-0700 (Pacific Daylight Time)
+[debug] [2019-08-03T12:10:03.623Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2019-08-03T08:00:59.041Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-08-03T08:00:59.041Z] > authorizing via signed-in user
-[debug] [2019-08-03T08:00:59.041Z] [iam] checking project cse134b-hw5-18a8a for permissions ["firebase.projects.get"]
-[debug] [2019-08-03T08:00:59.043Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/cse134b-hw5-18a8a:testIamPermissions  
+[debug] [2019-08-03T12:10:03.645Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-08-03T12:10:03.645Z] > authorizing via signed-in user
+[debug] [2019-08-03T12:10:03.646Z] [iam] checking project cse134b-hw5-18a8a for permissions ["firebase.projects.get"]
+[debug] [2019-08-03T12:10:03.649Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/cse134b-hw5-18a8a:testIamPermissions  
 
-[debug] [2019-08-03T08:00:59.320Z] <<< HTTP RESPONSE 200
-[debug] [2019-08-03T08:00:59.321Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/cse134b-hw5-18a8a  
+[debug] [2019-08-03T12:10:03.928Z] <<< HTTP RESPONSE 200
+[debug] [2019-08-03T12:10:03.930Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/cse134b-hw5-18a8a  
  
-[debug] [2019-08-03T08:00:59.530Z] <<< HTTP RESPONSE 200
+[debug] [2019-08-03T12:10:04.130Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/Users/jyug/Documents/Course/CSE134B/HW5'...
 [info] 
-[debug] [2019-08-03T08:00:59.531Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/300023669783/clients/_:getWebAppConfig  
+[debug] [2019-08-03T12:10:04.132Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/300023669783/clients/_:getWebAppConfig  
  
-[debug] [2019-08-03T08:00:59.961Z] <<< HTTP RESPONSE 200
+[debug] [2019-08-03T12:10:04.558Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: ./Javascript
 [info] ✔  hosting: Local server: http://localhost:5000
