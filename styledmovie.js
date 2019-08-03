@@ -11,7 +11,7 @@ if (userLoginInfo == null){
   redirectUnauthorizedUser();
 }
 const atoken = userLoginInfo.id;
-const username = localStorage.getItem("userName");
+export const username = localStorage.getItem("userName");
 
 // Library functions
 
@@ -47,7 +47,6 @@ function appendListNode(node, list, index) {
   const userRating = listNode.querySelector('.card-userRating');
   // userRating.innerHTML = `User Rating: ${node.userRating}`;
   for (var i = 0; i<node.userRating; i++){
-    console.log(userRating.children[i])
     userRating.children[i].setAttribute("class", "fa fa-star checked");
   }
   const image = listNode.querySelector('.card-image');
@@ -245,7 +244,7 @@ function removeContent(index) {
  * Preprocess and show the add dialog.
  * @param - index: the index of the element in the movie array
  */
-function add() {
+export function add() {
   // Preprocess the dialog
   editSaveButton = document.getElementById('save');
   editSaveButton.setAttribute('onclick', `setContent(${movieList.length})`);
@@ -257,7 +256,7 @@ function add() {
  * loadContent
  * Update DOM from data in the movie array
  */
-function loadContent() {
+export function loadContent() {
   clearContent();
   const list = document.getElementById('list');
   console.log(movieList);
@@ -294,7 +293,7 @@ function saveMovieList() {
  * Populate the movie array data structre from the api endpoints.
  * Called when page loads
  */
-function loadMovieList(callback) {
+export function loadMovieList(callback) {
   var listStr;
   let xhr = new XMLHttpRequest();
   const endpoint = `http://introweb.tech/api/movies/movieList?access_token=${atoken}`;
@@ -309,7 +308,6 @@ function loadMovieList(callback) {
       if (listStr == null) {
         return;
       } else {
-        console.log(listStr);
         movieList = JSON.parse(listStr);
       }
     } else {
@@ -327,7 +325,6 @@ function loadMovieList(callback) {
     } else {
       movieList = JSON.parse(listStr);
       movieList = movieList.movies;
-      console.log(movieList);
       callback();
     }
   }
@@ -335,7 +332,7 @@ function loadMovieList(callback) {
 /*
  * logout 
  */
-function logout() {
+export function logout() {
   let endpoint = `http://introweb.tech/api/Users/logout?access_token=${atoken}`;
   let xhr = new XMLHttpRequest();
   xhr.open('POST', endpoint, true);
@@ -359,7 +356,7 @@ function redirectUnauthorizedUser() {
  * clearDialog
  * Clear the dialog files
  */
-function clearDialog() {
+export function clearDialog() {
   document.getElementById('title').value = '';
   document.getElementById('year').value = '';
   document.getElementById('rating').value = '';
@@ -369,25 +366,25 @@ function clearDialog() {
   document.getElementById('err').innerHTML = '';
 }
 
-// Executed on page load
-window.onload = function () {
-  // Callback on loadMovieList
-  document.getElementById("nav-username").innerHTML = `${username} `;
-  loadMovieList(loadContent);
-  document.getElementById('add-button').addEventListener('click', function () {
-    add();
-  });
+// // Executed on page load
+// window.onload = function () {
+//   // Callback on loadMovieList
+//   document.getElementById("nav-username").innerHTML = `${username} `;
+//   loadMovieList(loadContent);
+//   document.getElementById('add-button').addEventListener('click', function () {
+//     add();
+//   });
   
-  document.getElementById('nav-login-control').addEventListener('click', function () {
-    logout();
-  });
+//   document.getElementById('nav-login-control').addEventListener('click', function () {
+//     logout();
+//   });
 
-  document.getElementById('cancel-r').addEventListener('click', function () {
-    document.getElementById('remove-dialog').close();
-  });
+//   document.getElementById('cancel-r').addEventListener('click', function () {
+//     document.getElementById('remove-dialog').close();
+//   });
 
-  document.getElementById('cancel').addEventListener('click', function () {
-    document.getElementById('edit-dialog').close();
-    clearDialog();
-  });
-}
+//   document.getElementById('cancel').addEventListener('click', function () {
+//     document.getElementById('edit-dialog').close();
+//     clearDialog();
+//   });
+// }

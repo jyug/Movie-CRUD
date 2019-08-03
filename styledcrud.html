@@ -242,11 +242,11 @@
 
         /* Star Rating */
         span.fa-star::before {
-            color:rgba(0, 0, 0, 0.2);
+            color: rgba(0, 0, 0, 0.2);
         }
 
         span.checked::before {
-            color:rgba(79, 70, 206, 0.986);
+            color: rgba(79, 70, 206, 0.986);
         }
     </style>
 </head>
@@ -347,6 +347,29 @@
             </div>
         </div>
     </template>
+
+    <!-- Script -->
+    <script type="module">
+        import {loadContent, add, logout, clearDialog} from "./styledmovie.js";
+        document.getElementById("nav-username").innerHTML = `${username} `;
+        loadMovieList(loadContent);
+        document.getElementById('add-button').addEventListener('click', function () {
+            add();
+        });
+
+        document.getElementById('nav-login-control').addEventListener('click', function () {
+            logout();
+        });
+
+        document.getElementById('cancel-r').addEventListener('click', function () {
+            document.getElementById('remove-dialog').close();
+        });
+
+        document.getElementById('cancel').addEventListener('click', function () {
+            document.getElementById('edit-dialog').close();
+            clearDialog();
+        });
+    </script>
 </body>
 
 </html>

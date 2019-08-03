@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/1.0.11/purify.js"></script>
-    <script src="./sign.js"></script>
+    <script nomodule src="./sign.js"></script>
     <style>
         /* Grid Layout */
         .grid-container {
@@ -152,7 +152,8 @@
         </div>
         <div id="col-right"></div>
     </div>
-    <script>
+    <script type="module">
+        import {formRequest} from "./sign.js";
         document.getElementById("signupSubmit").addEventListener("click", function () { formRequest(true); });
         document.getElementById("signinSubmit").addEventListener("click", function () { formRequest(false); });
         document.getElementById("signupLink").addEventListener("click", function () { switchWindow("signup", "signin"); });

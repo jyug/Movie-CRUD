@@ -10,7 +10,7 @@ const apiURL = "http://introweb.tech/api";
 const moviePage = "./styledcrud.html";
 
 //window.addEventListener("onload", function () {signupAjax();});
-function formRequest(signup) {
+export function formRequest(signup) {
     let endpoint;
     let formData;
     let payloadParam;
