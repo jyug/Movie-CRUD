@@ -271,11 +271,11 @@
     <!-- edit dialog -->
     <dialog id="edit-dialog">
         <label for="title">Title:</label><br>
-        <input type="text" name="title" id="title" placeholder="Title"><br>
+        <input type="text" name="title" id="title" placeholder="Title" autofocus><br>
         <label for="year">Year of Release:</label><br>
-        <input type="number" name="year" id="year"><br>
+        <input type="number" name="year" id="year" placeholder="2019"><br>
         <label for="rating">Rating:</label><br>
-        <select name="rating" id="rating">
+        <select name="rating" id="rating" placeholder="PG">
             <option value="G">G</option>
             <option value="PG">PG</option>
             <option value="PG-13">PG-13</option>
@@ -283,7 +283,7 @@
             <option value="NR">NR</option>
         </select><br>
         <label for="genre">Genre:</label><br>
-        <select name="genre" id="genre">
+        <select name="genre" id="genre" placeholder="Sci-fi">
             <option value="Action">Action</option>
             <option value="Anime">Anime</option>
             <option value="Comedy">Comedy</option>
@@ -295,9 +295,9 @@
             <option value="Sci-fi">Sci-fi</option>
         </select><br>
         <label for="userRating">User Rating:</label><br>
-        <input type="number" name="userRating" id="userRating" style="width: 70px;" min="0" max="5"><br>
+        <input type="number" name="userRating" id="userRating" style="width: 70px;" min="0" max="5" placeholder="3"><br>
         <label for="image">Image Link:</label><br>
-        <input type="text" name="image" id="image"><br>
+        <input type="text" name="image" id="image" placeholder="http://somelink.com"><br>
         <div id="err"></div>
         <div class="dialog-buttons">
             <button id="cancel">Cancel</button>
