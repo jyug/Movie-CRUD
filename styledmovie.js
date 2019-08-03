@@ -80,6 +80,19 @@ export function initializeListNodeButtons(index, node) {
  * @param - index: the index of the element in the movie array
  */
 export function edit(index) {
+  //make sure the fields are white
+  let title = document.getElementById('title');
+  let year = document.getElementById('year');
+  let rating = document.getElementById('rating');
+  let image = document.getElementById('image');
+  title.style.borderColor = 'white';
+  title.style.borderWidth = '1px';
+  year.style.borderColor = 'white';
+  year.style.borderWidth = '1px';
+  rating.style.borderColor = 'white';
+  rating.style.borderWidth = '1px';
+  image.style.borderColor = 'white';
+  image.style.borderWidth = '1px';
   // Preprocess the dialog
   var editSaveButton = document.getElementById('save');
   editSaveButton.setAttribute('onclick', `setContent(${index})`);
@@ -107,17 +120,33 @@ export function edit(index) {
  */
 export function setContent(index) {
   // Get user input
-  let title = document.getElementById('title').value;
-  let year = document.getElementById('year').value;
-  let rating = document.getElementById('rating').value;
-  let genre = document.getElementById('genre').value;
-  let userRating = document.getElementById('userRating').value;
-  let image = document.getElementById('image').value;
+  let title = document.getElementById('title');
+  let year = document.getElementById('year');
+  let rating = document.getElementById('rating');
+  let genre = document.getElementById('genre');
+  let userRating = document.getElementById('userRating');
+  let image = document.getElementById('image');
   // Check for empty input
-  if (title == '' || year == '' || rating == '' || image == '') {
+  if (title.value == '' || year.value  == '' || rating.value  == '' || image.value  == '') {
     // Generate error message
     const errText = 'All fields are required.';
     document.getElementById('err').innerHTML = errText;
+    if (title.value  == '') {
+      title.style.borderColor = 'rgba(242, 88, 124, 0.60)';
+      title.style.borderWidth = '3px';
+    }
+    if (year.value  == '') {
+      year.style.borderColor = 'rgba(242, 88, 124, 0.60)';
+      year.style.borderWidth = '3px';
+    }
+    if (rating.value  == '') {
+      rating.style.borderColor = 'rgba(242, 88, 124, 0.60)';
+      rating.style.borderWidth = '3px';
+    }
+    if (image.value  == '') {
+      image.style.borderColor = 'rgba(242, 88, 124, 0.60)';
+      image.style.borderWidth = '3px';
+    }
     return;
   } else {
     if (userRating < 0 || userRating > 5) {
@@ -126,12 +155,12 @@ export function setContent(index) {
     return;
     }
     // Sanitize input
-    title = DOMPurify.sanitize(title);
-    year = DOMPurify.sanitize(year);
-    rating = DOMPurify.sanitize(rating);
-    genre = DOMPurify.sanitize(genre);
-    userRating = DOMPurify.sanitize(userRating);
-    image = DOMPurify.sanitize(image);
+    title.value  = DOMPurify.sanitize(title.value );
+    year.value  = DOMPurify.sanitize(year.value );
+    rating.value  = DOMPurify.sanitize(rating.value );
+    genre.value  = DOMPurify.sanitize(genre.value );
+    userRating.value  = DOMPurify.sanitize(userRating.value );
+    image.value  = DOMPurify.sanitize(image.value );
   }
   // Set Content in remote
   const listNodeCur = document.getElementById(`li-${index}`);
@@ -140,14 +169,14 @@ export function setContent(index) {
   if (listNodeCur != null) {
     let id = movieList[index].id;
     node = {
-      "title": title, "year": year, "rating": rating, "genre": genre,
-      "userRating": userRating, "image": image, "id": id
+      "title": title.value , "year": year.value , "rating": rating.value , "genre": genre.value ,
+      "userRating": userRating.value , "image": image.value , "id": id
     };
     setContentRemote(node, index, true);
   } else {
     node = {
-      "title": title, "year": year, "rating": rating, "genre": genre,
-      "userRating": userRating, "image": image
+      "title": title.value , "year": year.value , "rating": rating.value , "genre": genre.value ,
+      "userRating": userRating.value , "image": image.value 
     };
     setContentRemote(node, index, false);
   }
@@ -246,6 +275,19 @@ export function removeContent(index) {
  * @param - index: the index of the element in the movie array
  */
 export function add() {
+  //make sure the fields are white
+  let title = document.getElementById('title');
+  let year = document.getElementById('year');
+  let rating = document.getElementById('rating');
+  let image = document.getElementById('image');
+  title.style.borderColor = 'white';
+  title.style.borderWidth = '1px';
+  year.style.borderColor = 'white';
+  year.style.borderWidth = '1px';
+  rating.style.borderColor = 'white';
+  rating.style.borderWidth = '1px';
+  image.style.borderColor = 'white';
+  image.style.borderWidth = '1px';
   // Preprocess the dialog
   var editSaveButton = document.getElementById('save');
   editSaveButton.setAttribute('onclick', `setContent(${movieList.length})`);
