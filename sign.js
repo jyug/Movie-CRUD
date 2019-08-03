@@ -1,7 +1,7 @@
 /*
  * switches between sign in and sign up window
  */
-function switchWindow(vis, hid) {
+export function switchWindow(vis, hid) {
     document.getElementById(vis).style.visibility = "visible";
     document.getElementById(hid).style.visibility = "hidden";
 }

@@ -153,13 +153,11 @@
         <div id="col-right"></div>
     </div>
     <script type="module">
-        import {formRequest} from "./sign.js";
+        import {formRequest, switchWindow} from "./sign.js";
         document.getElementById("signupSubmit").addEventListener("click", function () { formRequest(true); });
         document.getElementById("signinSubmit").addEventListener("click", function () { formRequest(false); });
         document.getElementById("signupLink").addEventListener("click", function () { switchWindow("signup", "signin"); });
         document.getElementById("signinLink").addEventListener("click", function () { switchWindow("signin", "signup"); });
-        document.getElementById("signupAgain").addEventListener("click", function () { switchWindow("signup", "errSignUpDialog"); });
-        document.getElementById("signinAgain").addEventListener("click", function () { switchWindow("signin", "errSignInDialog"); });
     </script>
     <noscript>
         <b style="text-align: center;">Please enable JavaScript!</b>
